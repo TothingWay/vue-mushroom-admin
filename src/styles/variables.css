@@ -1,0 +1,10 @@
+:root {
+  /* 侧边栏宽度 */
+  --sidebar-width: 210px;
+  /* 导航栏高度 */
+  --navbar-height: 48px;
+  /* 标签栏高度 */
+  --tagsview-height: 38px;
+  /* 主要显示区域padding值 */
+  --app-main-padding: 8px;
+}

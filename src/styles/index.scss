@@ -1,0 +1,87 @@
+@import './transition.scss';
+@import './sidebar.scss';
+
+/*
+ * 全局样式
+*/
+
+html,
+body {
+  height: 100%;
+}
+body {
+  position: relative;
+  font-size: 14px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial,
+    sans-serif;
+}
+
+#app {
+  height: 100%;
+}
+
+// 规范 drawer 样式
+.el-drawer {
+  .el-drawer__header {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 16px;
+    height: 40px;
+    margin-bottom: 0;
+    color: $textColor;
+    border-bottom: 1px solid var(--border-color);
+    .el-drawer__close-btn {
+      font-size: 16px;
+    }
+  }
+  .el-drawer__body {
+    padding: 16px;
+  }
+}
+
+// 规范 dialog 样式
+.el-dialog {
+  .el-dialog__header {
+    padding: 0 16px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    margin-right: 0;
+    .el-dialog__title {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+  .el-dialog__body {
+    padding: 16px;
+  }
+  .el-dialog__footer {
+    border-top: 1px solid var(--border-color);
+    padding: 16px;
+  }
+  .el-dialog__headerbtn {
+    top: 3px;
+    width: 41px;
+    height: 41px;
+  }
+}
+
+// table header sticky
+.table-sticky {
+  overflow: inherit;
+  .el-table__header-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 8;
+  }
+  // fix table border-top disappear
+  &.el-table--border {
+    .el-table__inner-wrapper::after {
+      top: -1px;
+    }
+  }
+}

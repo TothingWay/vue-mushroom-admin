@@ -20,6 +20,7 @@
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.17",
     "vue": "^3.2.37",
+    "vue-i18n": "9",
     "vue-router": "4"
   },
   "devDependencies": {
