@@ -1,23 +1,23 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-    <i-ep-user />
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <img src="./assets/logo.png" class="logo" alt="Logo" />
+  <h1 class="title">vue-mushroom-admin</h1>
+  <h3>开发中，敬请期待</h3>
 </template>
 
-<style scoped>
+<style>
+body {
+  background-color: #242424;
+}
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+  height: 80vh;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -26,7 +26,8 @@ import HelloWorld from './components/HelloWorld.vue'
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.title {
+  margin-top: 0;
 }
 </style>

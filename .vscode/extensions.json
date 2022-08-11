@@ -1,3 +1,12 @@
 {
-  "recommendations": ["Vue.volar"]
+  "recommendations": [
+    "vue.volar",
+    "aaron-bond.better-comments",
+    "vunguyentuan.vscode-css-variables",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "lokalise.i18n-ally",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode"
+  ]
 }

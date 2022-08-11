@@ -34,13 +34,12 @@ export default defineConfig({
     extensions: ['.mjs', '.js', '.json'],
   },
   plugins: [
-    vue({
-      reactivityTransform: true,
-    }),
+    vue(),
 
     AutoImport({
       // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
       imports: ['vue'],
+      dts: true,
 
       resolvers: [
         // 自动导入图标组件
@@ -55,6 +54,7 @@ export default defineConfig({
     }),
 
     Components({
+      dts: true,
       resolvers: [
         // 自动注册图标组件
         IconsResolver({

@@ -1,14 +1,7 @@
+<script setup lang="ts"></script>
+
 <template>
-  <div>1</div>
+  <h1>开发中</h1>
 </template>
 
-<script>
-export default {
-  data() {
-    return {}
-  },
-  methods: {},
-}
-</script>
-
-<style lang="scss" scoped></style>
+<style scoped></style>

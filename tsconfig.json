@@ -9,7 +9,6 @@
     "allowJs": true,
     "sourceMap": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
@@ -17,8 +16,8 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["element-plus/global", "unplugin-icons/types/vue"]
+    "types": ["vite/client", "element-plus/global", "unplugin-icons/types/vue"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "auto-imports.d.ts", "components.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
