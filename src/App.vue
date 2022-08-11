@@ -2,7 +2,7 @@
 
 <template>
   <img src="./assets/logo.png" class="logo" alt="Logo" />
-  <h1 class="title">vue-mushroom-admin</h1>
+  <h1 class="mt-0">vue-mushroom-admin</h1>
   <h3>开发中，敬请期待</h3>
 </template>
 
@@ -25,9 +25,5 @@ body {
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.title {
-  margin-top: 0;
 }
 </style>

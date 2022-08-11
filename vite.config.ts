@@ -12,6 +12,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import Unocss from 'unocss/vite'
 // svg icons
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
@@ -73,6 +74,8 @@ export default defineConfig({
       // 指定symbolId格式
       symbolId: 'icon-[dir]-[name]',
     }),
+
+    Unocss(),
   ],
   build: {
     // 启用/禁用 gzip 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能。
