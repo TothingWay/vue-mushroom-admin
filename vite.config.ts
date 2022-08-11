@@ -1,3 +1,10 @@
+/*
+ * @name:
+ * @Author: wei.wang
+ * @Date: 2022-08-10 15:02:15
+ * @LastEditors: wei.wang
+ * @LastEditTime: 2022-08-11 13:59:40
+ */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
@@ -68,8 +75,6 @@ export default defineConfig({
     }),
   ],
   build: {
-    // 指定生成静态资源的存放路径
-    assetsDir: 'static',
     // 启用/禁用 gzip 压缩大小报告。压缩大型输出文件可能会很慢，因此禁用该功能可能会提高大型项目的构建性能。
     reportCompressedSize: false,
     // 消除打包大小超过500kb警告
