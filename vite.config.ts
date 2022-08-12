@@ -7,6 +7,7 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import Unocss from 'unocss/vite'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
+import { viteMockServe } from 'vite-plugin-mock'
 // svg icons
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
@@ -74,6 +75,15 @@ export default defineConfig({
       runtimeOnly: true,
       compositionOnly: true,
       include: [resolve(__dirname, 'src/lang/**')],
+    }),
+
+    // mock
+    viteMockServe({
+      // 控制关闭mock的时候不让mock打包到最终代码内
+      injectCode: `
+        import { setupProdMockServer } from './mockProdServer';
+        setupProdMockServer();
+      `,
     }),
 
     Unocss(),

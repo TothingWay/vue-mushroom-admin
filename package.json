@@ -15,8 +15,10 @@
   },
   "dependencies": {
     "@vueuse/core": "^9.1.0",
+    "axios": "^0.27.2",
     "dayjs": "^1.11.4",
     "element-plus": "^2.2.12",
+    "mockjs": "^1.1.0",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.17",
     "vue": "^3.2.37",
@@ -49,6 +51,7 @@
     "unplugin-icons": "^0.14.8",
     "unplugin-vue-components": "^0.22.4",
     "vite": "^3.0.0",
+    "vite-plugin-mock": "^2.9.6",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-tsc": "^0.38.4"
   },
