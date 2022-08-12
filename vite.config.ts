@@ -1,10 +1,3 @@
-/*
- * @name:
- * @Author: wei.wang
- * @Date: 2022-08-10 15:02:15
- * @LastEditors: wei.wang
- * @LastEditTime: 2022-08-11 13:59:40
- */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
@@ -13,6 +6,7 @@ import Components from 'unplugin-vue-components/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import Unocss from 'unocss/vite'
+import VueI18n from '@intlify/vite-plugin-vue-i18n'
 // svg icons
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
@@ -38,9 +32,9 @@ export default defineConfig({
     vue(),
 
     AutoImport({
-      // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
-      imports: ['vue'],
-      dts: true,
+      // 自动导入 Vue, Vue-i18n 相关函数，如：ref, reactive, toRef 等
+      imports: ['vue', 'vue-i18n'],
+      dts: 'src/auto-imports.d.ts',
 
       resolvers: [
         // 自动导入图标组件
@@ -55,7 +49,7 @@ export default defineConfig({
     }),
 
     Components({
-      dts: true,
+      dts: 'src/components.d.ts',
       resolvers: [
         // 自动注册图标组件
         IconsResolver({
@@ -73,6 +67,13 @@ export default defineConfig({
       iconDirs: [resolve(process.cwd(), 'src/icons/svg')],
       // 指定symbolId格式
       symbolId: 'icon-[dir]-[name]',
+    }),
+
+    // https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n
+    VueI18n({
+      runtimeOnly: true,
+      compositionOnly: true,
+      include: [resolve(__dirname, 'src/lang/**')],
     }),
 
     Unocss(),
