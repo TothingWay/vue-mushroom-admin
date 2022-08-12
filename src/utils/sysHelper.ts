@@ -10,7 +10,8 @@ import { useStorage } from '@vueuse/core'
 // 获取系统语言
 export function getLanguage() {
   // 获取浏览器默认语言，截取前2位字符
-  const sysLang = (navigator.language || navigator.userLanguage).substr(0, 2)
+  const sysLang = navigator.language.substring(0, 2)
+
   // 当前设置的语言
   const currentLang = useStorage('language', sysLang, sessionStorage)
 
