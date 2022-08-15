@@ -6,15 +6,32 @@ import Layout from '@/layout/index.vue'
 // 静态路由
 export const constantRoutes = [
   {
-    path: '/',
+    path: '/redirect',
+    name: 'redirect',
     component: Layout,
-    redirect: '/myDashboard',
+    hidden: true,
     children: [
       {
-        path: 'myDashboard',
-        name: 'MyDashboard',
-        component: () => import('@/views/sys/desktop/index.vue'),
-        meta: { title: 'myDesktop', icon: 'desktop', affix: true }, //noCache: true,
+        path: '/redirect/:path(.*)',
+        component: () => import('@/views/redirect/index.vue'),
+      },
+    ],
+  },
+  {
+    path: '/login',
+    component: () => import('@/views/login/index.vue'),
+    hidden: true,
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/desktop/index.vue'),
+        meta: { title: 'route.dashboard', icon: 'desktop', affix: true }, //noCache: true,
       },
     ],
   },

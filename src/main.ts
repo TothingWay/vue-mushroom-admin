@@ -10,6 +10,7 @@ import '@/styles/theme/dark.css'
 import '@/styles/variables.css'
 import useElementPlus from '@/plugins/elementPlus'
 import registerGlobComps from '@/plugins/registerGlobComps'
+import '@/permission'
 
 const app = createApp(App)
 const store = createPinia()
