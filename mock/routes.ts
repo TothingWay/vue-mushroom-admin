@@ -1,5 +1,5 @@
 import { MockMethod } from 'vite-plugin-mock'
-import { getToken } from '../src/utils/auth'
+
 const permissionRouter = {
   path: '/permission',
   component: 'layout/Layout',
@@ -55,10 +55,10 @@ const icon = {
 
 export default [
   {
-    url: '/getRoutes',
+    url: '/user/routes',
     method: 'get',
-    response: () => {
-      if (getToken() === 'admin-token') {
+    response: ({ headers }) => {
+      if (headers.token === 'admin-token') {
         return {
           code: 200,
           data: [permissionRouter, icon],

@@ -26,6 +26,7 @@ export default defineConfig({
   resolve: {
     alias: [
       { find: '@', replacement: resolve(__dirname, 'src') }, // 别名：设置 `@` 指向 `src` 目录
+      { find: 'path', replacement: 'path-browserify' }, // 别名：设置 `@` 指向 `src` 目录
     ],
     extensions: ['.mjs', '.js', '.json'],
   },
@@ -34,7 +35,7 @@ export default defineConfig({
 
     AutoImport({
       // 自动导入 Vue, Vue-i18n 相关函数，如：ref, reactive, toRef 等
-      imports: ['vue', 'vue-i18n'],
+      imports: ['vue', 'vue-i18n', 'vue-router'],
       dts: 'src/auto-imports.d.ts',
 
       resolvers: [

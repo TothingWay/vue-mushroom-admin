@@ -23,7 +23,7 @@ const users = {
 export default [
   {
     url: '/user/login',
-    method: 'get',
+    method: 'post',
     response: ({ body }) => {
       const { username, password } = body
       const token = tokens[username]
@@ -35,9 +35,7 @@ export default [
       }
       return {
         code: 200,
-        data: {
-          token,
-        },
+        data: token,
       }
     },
   },

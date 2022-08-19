@@ -1,0 +1,15 @@
+{
+  "loginForm": {
+    "username": "username",
+    "password": "password"
+  },
+  "loginRules": {
+    "username": "Username is required",
+    "password": "Password cannot be less than 6 characters"
+  },
+  "capslock": "Caps lock is On",
+  "login": "Login",
+  "confirmLogout": "Confirm Logout",
+  "confirmLogoutTips": "You have been logged out, you can cancel to stay on this page, or log in again",
+  "confirmLogoutReLogin": "Re-Login"
+}

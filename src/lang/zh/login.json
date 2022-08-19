@@ -1,0 +1,15 @@
+{
+  "loginForm": {
+    "username": "用户名",
+    "password": "密码"
+  },
+  "loginRules": {
+    "username": "用户名必填",
+    "password": "密码不能小于6位"
+  },
+  "capslock": "大写锁定已开启",
+  "login": "登录",
+  "confirmLogout": "确认注销",
+  "confirmLogoutTips": "您已注销，您可以取消留在此页面，或重新登录",
+  "confirmLogoutReLogin": "重新登录"
+}

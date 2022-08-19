@@ -47,6 +47,8 @@
     "useCssModule": true,
     "useCssVars": true,
     "useI18n": true,
+    "useRoute": true,
+    "useRouter": true,
     "useSlots": true,
     "watch": true,
     "watchEffect": true,

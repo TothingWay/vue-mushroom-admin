@@ -1,6 +1,15 @@
 :root {
   /* 侧边栏宽度 */
   --sidebar-width: 210px;
+  /* 侧边栏颜色 */
+  --menu-bg: #2c3643;
+  /* 侧边栏激活背景色 */
+  --menu-active-bg: rgba(255,255,255,0.15);
+  /* 侧边栏字体颜色 */
+  --menu-text: rgba(255, 255, 255, .8);
+  /* 侧边栏激活字体颜色 */
+  --menu-active-text: #fff;
+
   /* 导航栏高度 */
   --navbar-height: 48px;
   /* 标签栏高度 */
