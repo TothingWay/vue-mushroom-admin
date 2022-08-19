@@ -5,6 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import Unocss from 'unocss/vite'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import { viteMockServe } from 'vite-plugin-mock'
@@ -62,6 +63,11 @@ export default defineConfig({
 
     Icons({
       autoInstall: true,
+      customCollections: {
+        'svg-icon': FileSystemIconLoader('./src/icons/svg', (svg) =>
+          svg.replace(/^<svg /, '<svg fill="currentColor" ')
+        ),
+      },
     }),
 
     createSvgIconsPlugin({

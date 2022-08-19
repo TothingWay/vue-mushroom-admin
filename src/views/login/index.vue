@@ -2,8 +2,12 @@
 import type { FormRules, FormInstance } from 'element-plus'
 import type { LocationQuery } from 'vue-router'
 import { useUserStore } from '@/store/user'
+import { useSettingStore } from '@/store/settings'
 import User from '~icons/ep/user'
 import Lock from '~icons/ep/lock'
+import SunSvgIcon from '~icons/svg-icon/sun'
+import MoonSvgIcon from '~icons/svg-icon/moon'
+
 const { t } = useI18n()
 
 const loginForm = reactive({
@@ -94,10 +98,34 @@ onMounted(() => {
     passwordRef.value?.focus()
   }
 })
+
+// 暗黑模式切换
+const settingStore = useSettingStore()
+const theme = computed({
+  get() {
+    return settingStore.isDark
+  },
+  set(val: boolean) {
+    settingStore.toggleTheme(val)
+  },
+})
 </script>
 
 <template>
   <div class="login-container">
+    <div class="flex-center absolute right-5 top-3">
+      <el-switch
+        v-model="theme"
+        inline-prompt
+        :active-icon="MoonSvgIcon"
+        style="
+          --el-switch-on-color: var(--el-border-color);
+          --el-switch-off-color: var(--el-color-primary);
+        "
+        :inactive-icon="SunSvgIcon"
+        size="default"
+      />
+    </div>
     <el-form
       ref="loginFormRef"
       :model="loginForm"
@@ -107,7 +135,8 @@ onMounted(() => {
       size="large"
     >
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <img class="title-logo" src="@/assets/logo.png" alt="logo" />
+        <h3 class="title">Mushroom Admin</h3>
       </div>
 
       <el-form-item prop="username">
@@ -155,8 +184,24 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+  .title-container {
+    text-align: center;
+    .title-logo {
+      height: 80px;
+      will-change: filter;
+      &:hover {
+        filter: drop-shadow(0 0 2em #646cffaa);
+      }
+    }
+    .title {
+      font-size: 26px;
+      font-weight: 700;
+      margin-top: 4px;
+      margin-bottom: 22px;
+    }
+  }
   .login-form {
-    width: 520px;
+    width: 500px;
     max-width: 90%;
     height: 50%;
 
@@ -167,12 +212,17 @@ onMounted(() => {
     }
   }
 }
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+:root.dark {
+  .login-container {
+    background: #141414;
+    .login-form {
+      :deep(input) {
+        &:-webkit-autofill {
+          box-shadow: 0 0 0px 1000px #141414 inset !important;
+        }
+      }
+    }
+  }
 }
 </style>
