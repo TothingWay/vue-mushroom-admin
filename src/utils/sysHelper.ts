@@ -1,11 +1,33 @@
-/*
- * @name: 系统辅助工具函数
- * @Author: wei.wang
- * @Date: 2022-08-09 15:33:03
- * @LastEditors: wei.wang
- * @LastEditTime: 2022-08-09 16:42:04
- */
 import { useStorage } from '@vueuse/core'
+import axios from 'axios'
+
+const config = useStorage<ImportMetaEnv>('config', {} as ImportMetaEnv)
+// 获取系统默认配置
+export function getConfig(key: string) {
+  const cfg: ImportMetaEnv = config.value
+  return cfg[key]
+}
+// 动态获取 /public 下的 config.json 配置，便于打包后修改，将会覆盖 import.meta.env 中的环境变量
+export function getSysConfig(): Promise<any> {
+  return axios({
+    baseURL: '',
+    method: 'get',
+    url: `${import.meta.env.BASE_URL}config.json`,
+  })
+    .then(({ data }) => {
+      const filterEnv = Object.keys(import.meta.env)
+        .filter((key) => key.indexOf('VITE_') > -1)
+        .reduce((obj: ImportMetaEnv, key) => {
+          obj[key] = import.meta.env[key]
+          return obj
+        }, {} as ImportMetaEnv)
+      config.value = Object.assign(filterEnv, data)
+      return config.value
+    })
+    .catch(() => {
+      throw 'Add the config.json configuration file to the public folder.'
+    })
+}
 
 // 获取系统语言
 export function getLanguage() {
