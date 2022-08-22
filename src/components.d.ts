@@ -7,6 +7,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    IEpUser: typeof import('~icons/ep/user')['default']
+    ISvgSun: typeof import('~icons/svg/sun')['default']
+    ISvgTranslation: typeof import('~icons/svg/translation')['default']
+    LangSelect: typeof import('./components/LangSelect/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./components/global/SvgIcon/index.vue')['default']

@@ -3,10 +3,11 @@ import type { FormRules, FormInstance } from 'element-plus'
 import type { LocationQuery } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import { useSettingStore } from '@/store/settings'
+import LangSelect from '@/components/LangSelect/index.vue'
 import User from '~icons/ep/user'
 import Lock from '~icons/ep/lock'
-import SunSvgIcon from '~icons/svg-icon/sun'
-import MoonSvgIcon from '~icons/svg-icon/moon'
+import SunSvgIcon from '~icons/svg/sun'
+import MoonSvgIcon from '~icons/svg/moon'
 
 const { t } = useI18n()
 
@@ -125,6 +126,7 @@ const theme = computed({
         :inactive-icon="SunSvgIcon"
         size="default"
       />
+      <LangSelect />
     </div>
     <el-form
       ref="loginFormRef"

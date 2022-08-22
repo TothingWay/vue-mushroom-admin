@@ -5,4 +5,9 @@ export default defineConfig({
   shortcuts: {
     'flex-center': 'flex justify-center items-center',
   },
+  theme: {
+    colors: {
+      primary: 'var(--el-color-primary)',
+    },
+  },
 })

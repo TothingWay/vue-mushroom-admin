@@ -43,9 +43,10 @@ export default defineConfig({
         // 自动导入图标组件
         IconsResolver({
           prefix: 'Icon',
+          enabledCollections: ['ep', 'svg'],
         }),
       ],
-      vueTemplate: true,
+
       eslintrc: {
         enabled: true, // <-- this
       },
@@ -56,7 +57,7 @@ export default defineConfig({
       resolvers: [
         // 自动注册图标组件
         IconsResolver({
-          enabledCollections: ['ep'],
+          enabledCollections: ['ep', 'svg'],
         }),
       ],
     }),
@@ -64,7 +65,7 @@ export default defineConfig({
     Icons({
       autoInstall: true,
       customCollections: {
-        'svg-icon': FileSystemIconLoader('./src/icons/svg', (svg) =>
+        svg: FileSystemIconLoader('./src/icons/svg', (svg) =>
           svg.replace(/^<svg /, '<svg fill="currentColor" ')
         ),
       },
