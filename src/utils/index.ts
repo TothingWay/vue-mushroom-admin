@@ -4,7 +4,7 @@
  * @param {string[]} 忽略要拷贝的key 数组
  * @return source
  */
-export function deepClone(source: any, ignore: string[]) {
+export function deepClone(source: any, ignore: string[] = []) {
   if (!source && typeof source !== 'object') {
     throw new Error('deepClone: error arguments')
   }

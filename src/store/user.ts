@@ -17,7 +17,6 @@ export const useUserStore = defineStore('user', {
         login({ username: username.trim(), password: password })
           .then((response) => {
             const { data } = response
-            console.log(data)
 
             this.token = data.token
             setToken(data.token)
