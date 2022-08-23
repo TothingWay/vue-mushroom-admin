@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Hamburger: typeof import('./components/Hamburger/index.vue')['default']
     IEpUser: typeof import('~icons/ep/user')['default']
     ISvgSun: typeof import('~icons/svg/sun')['default']
     ISvgTranslation: typeof import('~icons/svg/translation')['default']

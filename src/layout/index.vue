@@ -6,19 +6,18 @@ import TagsView from './components/TagsView/index.vue'
 
 import { useAppStore } from '@/store/app'
 import { getConfig } from '@/utils/sysHelper'
+import { storeToRefs } from 'pinia'
 
 const appStore = useAppStore()
-
-const sidebarOpened = appStore.sidebarOpened
-const device = appStore.device
+const { sidebarOpened, device } = storeToRefs(appStore)
 
 const hasTagsView = getConfig('VITE_TAGS_VIEW') === '1'
 
 const classObj = computed(() => {
   return {
-    hideSidebar: !sidebarOpened,
-    openSidebar: sidebarOpened,
-    mobile: device === 'mobile',
+    hideSidebar: !sidebarOpened.value,
+    openSidebar: sidebarOpened.value,
+    mobile: device.value === 'mobile',
   }
 })
 

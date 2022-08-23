@@ -1,7 +1,27 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useSettingStore } from '@/store/settings'
+import { useAppStore } from '@/store/app'
+import { storeToRefs } from 'pinia'
+
+const appStore = useAppStore()
+const settingStore = useSettingStore()
+const { menuMode } = storeToRefs(settingStore)
+const { sidebarOpened } = storeToRefs(appStore)
+const { toggleSideBar } = appStore
+</script>
 
 <template>
-  <div class="navbar">Navbar</div>
+  <div class="navbar">
+    <div class="left-menu">
+      <hamburger
+        v-if="menuMode === 'vertical'"
+        id="hamburger-container"
+        :is-active="sidebarOpened"
+        class="hamburger-container"
+        @toggle-click="toggleSideBar"
+      />
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>

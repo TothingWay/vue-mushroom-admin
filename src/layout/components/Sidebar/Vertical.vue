@@ -16,7 +16,6 @@ const permissionStore = usePermissionStore()
 const { sidebarOpened, horizontalSplitMenuIndex } = storeToRefs(appStore)
 const { menuMode, showLogo } = storeToRefs(settingStore)
 const { routes } = storeToRefs(permissionStore)
-const isCollapse = !sidebarOpened
 
 const activeMenu = computed(() => {
   const { meta, path } = useRoute()
@@ -48,7 +47,7 @@ const verticalRoutes = computed(() => {
 
   // 控制是否显示左侧导航
   if (verticalRoutes.length) {
-    if (menuMode.value === 'horizontalSplit' && isCollapse) {
+    if (menuMode.value === 'horizontalSplit' && !sidebarOpened) {
       appStore.toggleSideBar()
     }
 
@@ -79,11 +78,11 @@ watch(
 
 <template>
   <div :class="{ 'has-logo': showLogo }">
-    <Logo v-if="showLogo && menuMode === 'vertical'" :collapse="isCollapse" />
+    <Logo v-if="showLogo && menuMode === 'vertical'" :collapse="!sidebarOpened" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
-        :collapse="isCollapse"
+        :collapse="!sidebarOpened"
         :unique-opened="false"
         :collapse-transition="false"
         mode="vertical"
