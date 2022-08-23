@@ -68,7 +68,7 @@ const handleClickOutside = () => {
 }
 
 .app-header {
-  width: calc(100% - var(--sidebar-width));
+  width: 100%;
   transition: width 0.28s;
 }
 

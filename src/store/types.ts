@@ -2,6 +2,8 @@ export interface routeMetaType {
   title?: string
   icon?: string
   parent?: string
+  noCache?: boolean
+  affix?: boolean
 }
 export interface routeType {
   component: any
@@ -11,7 +13,7 @@ export interface routeType {
   query?: object
   meta?: routeMetaType
   children?: routeType[]
-  name?: string
+  name: string
 }
 
 export interface userInfoType {
