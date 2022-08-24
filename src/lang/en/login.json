@@ -11,5 +11,7 @@
   "login": "Login",
   "confirmLogout": "Confirm Logout",
   "confirmLogoutTips": "You have been logged out, you can cancel to stay on this page, or log in again",
-  "confirmLogoutReLogin": "Re-Login"
+  "confirmLogoutReLogin": "Re-Login",
+  "logOutMsg": "Are you sure you want to log out?",
+  "logOut": "LogOut"
 }

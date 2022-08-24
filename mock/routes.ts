@@ -43,6 +43,10 @@ const permissionRouter = {
 const icon = {
   path: '/icon',
   component: 'layout/Layout',
+  meta: {
+    title: 'icon',
+    roles: ['admin', 'editor'],
+  },
   children: [
     {
       path: 'index',

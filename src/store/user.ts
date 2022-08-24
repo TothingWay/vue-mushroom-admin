@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { login, getUserInfo } from '@/api/user'
 import { userInfoType } from './types'
+import { resetRouter } from '@/router'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
@@ -60,6 +61,7 @@ export const useUserStore = defineStore('user', {
         this.token = ''
         this.roles = []
         removeToken()
+        resetRouter()
         resolve()
       })
     },

@@ -2,12 +2,34 @@
 import { useSettingStore } from '@/store/settings'
 import { useAppStore } from '@/store/app'
 import { storeToRefs } from 'pinia'
+import { useUserStore } from '@/store/user'
+import { ElMessageBox } from 'element-plus'
 
 const appStore = useAppStore()
+const userStore = useUserStore()
 const settingStore = useSettingStore()
 const { menuMode } = storeToRefs(settingStore)
 const { sidebarOpened } = storeToRefs(appStore)
+const { name } = storeToRefs(userStore)
 const { toggleSideBar } = appStore
+
+const { t } = useI18n()
+const router = useRouter()
+const route = useRoute()
+
+const logout = () => {
+  ElMessageBox.confirm(t('login.logOutMsg'), t('login.logOut'), {
+    type: 'warning',
+  })
+    .then(() => {
+      userStore.resetToken().then(() => {
+        router.push(`/login?redirect=${route.fullPath}`)
+      })
+    })
+    .catch(() => {
+      return false
+    })
+}
 </script>
 
 <template>
@@ -20,6 +42,26 @@ const { toggleSideBar } = appStore
         class="hamburger-container"
         @toggle-click="toggleSideBar"
       />
+    </div>
+
+    <div class="right-menu">
+      <el-dropdown size="default" class="avatar-container right-menu-item hover-effect">
+        <div class="avatar-wrapper flex-center">
+          <el-avatar class="user-avatar">{{ name.substring(0, 1) }}</el-avatar>
+
+          <span class="username">{{ name || '未命名' }}</span>
+        </div>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item @click="logout">
+              <i-ep-switch-button class="h-15px mr-4px" />
+              {{ $t('login.logOut') }}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+
+      <i-ep-setting class="right-menu-item hover-effect h-20px" />
     </div>
   </div>
 </template>
@@ -70,11 +112,11 @@ const { toggleSideBar } = appStore
     }
 
     .right-menu-item {
-      padding: 0 8px;
+      padding: 0 10px;
       height: 100%;
-      font-size: 18px;
+      font-size: 16px;
       vertical-align: text-bottom;
-      color: var(--el-text-color-secondary);
+      color: var(--el-text-color-primary);
 
       &.hover-effect {
         cursor: pointer;
@@ -91,14 +133,8 @@ const { toggleSideBar } = appStore
     }
 
     .avatar-container {
-      margin-right: 15px;
-
       .avatar-wrapper {
         position: relative;
-        margin-top: 8px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
 
         .username {
           font-size: 14px;
@@ -109,9 +145,8 @@ const { toggleSideBar } = appStore
 
         .user-avatar {
           cursor: pointer;
-          width: 32px;
-          height: 32px;
-          border-radius: 10px;
+          width: 30px;
+          height: 30px;
         }
       }
     }

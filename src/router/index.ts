@@ -1,7 +1,8 @@
-import { Router, createRouter, createWebHashHistory } from 'vue-router'
+import { Router, createRouter, createWebHashHistory, RouteRecordName } from 'vue-router'
 
 /* Layout */
 import Layout from '@/layout/index.vue'
+import { routeType } from '@/store/types'
 
 // 静态路由
 export const constantRoutes = [
@@ -38,13 +39,13 @@ export const constantRoutes = [
 ]
 
 // 白名单应该包含基本静态路由
-/* const WHITE_NAME_LIST = []
-const getRouteNames = (array) =>
-  array.forEach((item) => {
-    WHITE_NAME_LIST.push(item.name)
+const whiteNameList: RouteRecordName[] = []
+const getRouteNames = (array: any[]) =>
+  array.forEach((item: routeType) => {
+    whiteNameList.push(item.name)
     getRouteNames(item.children || [])
   })
-getRouteNames(constantRoutes) */
+getRouteNames(constantRoutes)
 
 /**
  * asyncRoutes
@@ -58,13 +59,13 @@ const router: Router = createRouter({
   routes: constantRoutes,
 })
 
-/* export function resetRouter() {
+export function resetRouter() {
   router.getRoutes().forEach((route) => {
     const { name } = route
-    if (name && !WHITE_NAME_LIST.includes(name)) {
+    if (name && !whiteNameList.includes(name)) {
       router.hasRoute(name) && router.removeRoute(name)
     }
   })
-} */
+}
 
 export default router

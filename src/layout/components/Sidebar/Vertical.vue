@@ -59,12 +59,14 @@ const verticalRoutes = computed(() => {
   return menuMode.value === 'horizontalSplit' ? verticalRoutes : permissionRoutes
 })
 
+const route = useRoute()
+
 watch(
-  () => useRoute(),
+  route,
   (route) => {
-    const parent = route.meta.parent as string | undefined
+    const parent = route.meta.parent
     if (parent) {
-      appStore.setHorizontalSplitMenuIndex(parent)
+      appStore.setHorizontalSplitMenuIndex(parent as string)
     } else {
       appStore.setHorizontalSplitMenuIndex(route.path)
     }
