@@ -3,24 +3,24 @@
     <template
       v-if="
         hasOneShowingChild(item.children, item) &&
-        (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+        (!onlyOneChildTmp.children || onlyOneChildTmp.noShowingChildren) &&
         !item.alwaysShow
       "
     >
       <app-link
-        v-if="onlyOneChild.meta"
-        :to="resolvePath(onlyOneChild.path)"
+        v-if="onlyOneChildTmp.meta"
+        :to="resolvePath(onlyOneChildTmp.path)"
         :horizontal-split="horizontalSplit"
         :item="item"
       >
         <el-menu-item
-          :index="resolvePath(onlyOneChild.path)"
+          :index="resolvePath(onlyOneChildTmp.path)"
           :class="{ 'submenu-title-noDropdown': !isNest }"
         >
           <item
             :show-icon="showIcon"
-            :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
-            :title="$t(onlyOneChild.meta.title)"
+            :icon="onlyOneChildTmp.meta.icon || (item.meta && item.meta.icon)"
+            :title="$t(onlyOneChildTmp.meta.title)"
           />
         </el-menu-item>
       </app-link>
@@ -83,6 +83,11 @@ export default defineComponent({
     // TODO: refactor with render function
     ;(this as any).onlyOneChild = null
     return {}
+  },
+  computed: {
+    onlyOneChildTmp() {
+      return this.onlyOneChild as any
+    },
   },
   methods: {
     hasOneShowingChild(children: any[] = [], parent: any) {
