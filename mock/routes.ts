@@ -2,7 +2,7 @@ import { MockMethod } from 'vite-plugin-mock'
 
 const permissionRouter = {
   path: '/permission',
-  component: 'layout/Layout',
+  componentPath: 'layout/Layout',
   redirect: '/permission/index',
   alwaysShow: true,
   meta: {
@@ -13,7 +13,7 @@ const permissionRouter = {
   children: [
     {
       path: 'page',
-      component: 'permission/page',
+      componentPath: 'permission/page',
       name: 'PagePermission',
       meta: {
         title: 'Page Permission',
@@ -22,7 +22,7 @@ const permissionRouter = {
     },
     {
       path: 'directive',
-      component: 'permission/directive',
+      componentPath: 'permission/directive',
       name: 'DirectivePermission',
       meta: {
         title: 'Directive Permission',
@@ -30,7 +30,7 @@ const permissionRouter = {
     },
     {
       path: 'role',
-      component: 'permission/role',
+      componentPath: 'permission/role',
       name: 'RolePermission',
       meta: {
         title: 'Role Permission',
@@ -42,7 +42,7 @@ const permissionRouter = {
 
 const icon = {
   path: '/icon',
-  component: 'layout/Layout',
+  componentPath: 'layout/Layout',
   meta: {
     title: 'icon',
     roles: ['admin', 'editor'],
@@ -50,7 +50,7 @@ const icon = {
   children: [
     {
       path: 'index',
-      component: 'icons/index',
+      componentPath: 'icons/index',
       name: 'Icons',
       meta: { title: 'Icons', icon: 'icon', noCache: true },
     },

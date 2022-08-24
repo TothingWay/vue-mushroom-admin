@@ -59,10 +59,10 @@ const verticalRoutes = computed(() => {
   return menuMode.value === 'horizontalSplit' ? verticalRoutes : permissionRoutes
 })
 
-const route = useRoute()
+const $route = useRoute()
 
 watch(
-  route,
+  $route,
   (route) => {
     const parent = route.meta.parent
     if (parent) {

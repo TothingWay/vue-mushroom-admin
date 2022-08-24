@@ -70,7 +70,7 @@ export const usePermissionStore = defineStore('permission', {
           const flatRoutes = getFlatRoutes(deepClone(asyncRoutes, ['component']))
           console.log(flatRoutes)
 
-          this.routes = constantRoutes.concat(asyncRoutes)
+          this.routes = constantRoutes.concat(asyncRoutes) as any
           this.flatRoutes = flatRoutes
           resolve(flatRoutes)
         })
