@@ -5,7 +5,7 @@ type RemoveIndex<T> = {
   [P in keyof T as string extends P ? never : number extends P ? never : P]: T[P]
 }
 
-const config = useStorage('config', {} as RemoveIndex<ImportMetaEnv>)
+export const config = useStorage('config', {} as RemoveIndex<ImportMetaEnv>)
 
 // 获取系统默认配置
 export function getConfig<T extends keyof RemoveIndex<ImportMetaEnv>>(key: T) {
@@ -27,7 +27,7 @@ export function getSysConfig(): Promise<any> {
           obj[key] = import.meta.env[key]
           return obj
         }, {})
-      config.value = Object.assign(filterEnv, data as RemoveIndex<ImportMetaEnv>)
+      config.value = Object.assign(filterEnv, data as RemoveIndex<ImportMetaEnv>, config.value)
       return config.value
     })
     .catch(() => {

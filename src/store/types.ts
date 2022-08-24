@@ -14,6 +14,7 @@ export interface routeType {
   meta?: routeMetaType
   children?: routeType[]
   name: string
+  isLayout?: boolean
 }
 
 export interface userInfoType {

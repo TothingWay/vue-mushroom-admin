@@ -2,7 +2,7 @@ import { MockMethod } from 'vite-plugin-mock'
 
 const permissionRouter = {
   path: '/permission',
-  componentPath: 'layout/Layout',
+  componentPath: 'layout/index',
   redirect: '/permission/index',
   alwaysShow: true,
   meta: {
@@ -42,7 +42,7 @@ const permissionRouter = {
 
 const icon = {
   path: '/icon',
-  componentPath: 'layout/Layout',
+  componentPath: 'layout/index',
   meta: {
     title: 'icon',
     roles: ['admin', 'editor'],

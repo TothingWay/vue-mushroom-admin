@@ -10,8 +10,6 @@ declare module '@vue/runtime-core' {
     Hamburger: typeof import('./components/Hamburger/index.vue')['default']
     IEpSetting: typeof import('~icons/ep/setting')['default']
     IEpSwitchButton: typeof import('~icons/ep/switch-button')['default']
-    IEpUser: typeof import('~icons/ep/user')['default']
-    ISvgSun: typeof import('~icons/svg/sun')['default']
     ISvgTranslation: typeof import('~icons/svg/translation')['default']
     LangSelect: typeof import('./components/LangSelect/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

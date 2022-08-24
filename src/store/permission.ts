@@ -15,7 +15,13 @@ const modulesRoutesKeys = Object.keys(dynamicViewsModules)
 // 将三级及以上路由都转化为二级路由
 export const getFlatRoutes = (routes: routeType[]) => {
   const routers = routes.map((child) => {
-    child.component = Layout
+    const index = modulesRoutesKeys.findIndex((ev) => ev.includes(child.componentPath!))
+    if (index !== -1) {
+      child.component = dynamicViewsModules[modulesRoutesKeys[index]]
+    } else {
+      child.component = Layout
+    }
+
     if (child.children && child.children.length > 0) {
       child.children = formatRouter(child.children, child.path, [], child)
     }
@@ -68,9 +74,11 @@ export const usePermissionStore = defineStore('permission', {
           const asyncRoutes = response.data
 
           const flatRoutes = getFlatRoutes(deepClone(asyncRoutes, ['component']))
-          console.log(flatRoutes)
 
           this.routes = constantRoutes.concat(asyncRoutes) as any
+
+          console.log(this.routes)
+
           this.flatRoutes = flatRoutes
           resolve(flatRoutes)
         })

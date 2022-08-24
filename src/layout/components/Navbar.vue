@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import HorizontalBar from './Sidebar/Horizontal.vue'
+import Settings from './Settings.vue'
 import { useSettingStore } from '@/store/settings'
 import { useAppStore } from '@/store/app'
 import { storeToRefs } from 'pinia'
@@ -30,6 +32,9 @@ const logout = () => {
       return false
     })
 }
+
+// 系统设置抽屉
+const settingsVisible = ref(false)
 </script>
 
 <template>
@@ -42,6 +47,8 @@ const logout = () => {
         class="hamburger-container"
         @toggle-click="toggleSideBar"
       />
+
+      <HorizontalBar v-if="menuMode !== 'vertical'" class="horizontal-menu-container" />
     </div>
 
     <div class="right-menu">
@@ -61,8 +68,10 @@ const logout = () => {
         </template>
       </el-dropdown>
 
-      <i-ep-setting class="right-menu-item hover-effect h-20px" />
+      <i-ep-setting class="right-menu-item hover-effect h-20px" @click="settingsVisible = true" />
     </div>
+
+    <Settings v-model="settingsVisible" />
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { useDark } from '@vueuse/core'
-import { getConfig } from '@/utils/sysHelper'
+import { getConfig, config } from '@/utils/sysHelper'
 const isDark = useDark()
 
 export const useSettingStore = defineStore('setting', {
@@ -13,6 +13,10 @@ export const useSettingStore = defineStore('setting', {
     toggleTheme(val: boolean) {
       this.isDark = val
       isDark.value = val
+    },
+    changeMenuMode(mode: 'vertical' | 'horizontal' | 'horizontalSplit') {
+      config.value.VITE_MENU_MODE = mode
+      this.menuMode = mode
     },
   },
 })

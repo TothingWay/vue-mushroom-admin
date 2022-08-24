@@ -18,7 +18,7 @@ const props = defineProps({
 })
 
 const type = computed(() => {
-  if (props.horizontalSplit && props.item.isLayout) {
+  if (props.horizontalSplit && props.item.componentPath === 'layout/index') {
     return 'div'
   }
   if (isExternal(props.to)) {

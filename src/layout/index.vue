@@ -7,9 +7,12 @@ import TagsView from './components/TagsView/index.vue'
 import { useAppStore } from '@/store/app'
 import { getConfig } from '@/utils/sysHelper'
 import { storeToRefs } from 'pinia'
+import { useSettingStore } from '@/store/settings'
 
 const appStore = useAppStore()
 const { sidebarOpened, device } = storeToRefs(appStore)
+const settingStore = useSettingStore()
+const { menuMode } = storeToRefs(settingStore)
 
 const hasTagsView = getConfig('VITE_TAGS_VIEW') === '1'
 
@@ -25,6 +28,19 @@ const classObj = computed(() => {
 const handleClickOutside = () => {
   appStore.closeSideBar()
 }
+
+// 是否存在多级路由
+const hasMultipleRoutes = ref(true)
+// 水平与垂直导航结合情况下，无二级菜单则隐藏
+const showSidebar = computed(() => {
+  if (menuMode.value === 'horizontalSplit') {
+    return hasMultipleRoutes.value
+  } else if (menuMode.value === 'horizontal') {
+    return false
+  } else {
+    return true
+  }
+})
 </script>
 
 <template>
@@ -34,14 +50,27 @@ const handleClickOutside = () => {
       class="drawer-bg"
       @click="handleClickOutside"
     />
-    <VerticalBar class="sidebar-container" />
-    <div :class="{ hasTagsView }" class="main-container">
-      <div class="app-header">
-        <Navbar />
-        <TagsView v-if="hasTagsView" />
-      </div>
-      <AppMain />
+    <VerticalBar
+      v-if="menuMode !== 'horizontal'"
+      v-show="showSidebar"
+      class="sidebar-container"
+      @show="(val) => (hasMultipleRoutes = val)"
+    />
+
+    <div
+      class="app-header container-left"
+      :class="{
+        'horizontal-bar': menuMode === 'horizontal' || !showSidebar,
+      }"
+    >
+      <Navbar />
+      <TagsView v-if="hasTagsView" />
     </div>
+    <AppMain
+      :class="{
+        'horizontal-bar': menuMode === 'horizontal' || !showSidebar,
+      }"
+    />
   </div>
 </template>
 
@@ -64,11 +93,6 @@ const handleClickOutside = () => {
   height: 100%;
   position: absolute;
   z-index: 999;
-}
-
-.app-header {
-  width: 100%;
-  transition: width 0.28s;
 }
 
 .hideSidebar .app-header {

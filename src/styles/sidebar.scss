@@ -1,13 +1,8 @@
 #app {
-  .main-container {
-    height: 100%;
+  .container-left {
     transition: margin-left 0.28s;
     margin-left: var(--sidebar-width);
-    position: relative;
-    &.horizontalMemuActive {
-      margin-left: 0;
-    }
-    &.hiddenSidebar {
+    &.horizontal-bar {
       margin-left: 0;
     }
   }
@@ -24,9 +19,6 @@
     left: 0;
     z-index: 1001;
     overflow: hidden;
-    &.horizontalSplit {
-      top: var(--navbar-height);
-    }
 
     // reset element-ui css
     .horizontal-collapse-transition {
@@ -185,14 +177,9 @@
       }
     }
 
-    .main-container {
+    .container-left {
+      transition: none;
       margin-left: 54px;
-      &.horizontalMemuActive {
-        margin-left: 0;
-      }
-      &.hiddenSidebar {
-        margin-left: 0;
-      }
     }
   }
 
@@ -202,7 +189,7 @@
 
   // mobile responsive
   .mobile {
-    .main-container {
+    .container-left {
       margin-left: 0px;
     }
 
@@ -217,13 +204,6 @@
         transition-duration: 0.3s;
         transform: translate3d(-var(--sidebar-width), 0, 0);
       }
-    }
-  }
-
-  .withoutAnimation {
-    .main-container,
-    .sidebar-container {
-      transition: none;
     }
   }
 }

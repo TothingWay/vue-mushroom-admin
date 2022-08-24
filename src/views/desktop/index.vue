@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="h-80vh flex-center flex-col color-white">
+  <div class="h-80vh flex-center flex-col">
     <img src="@/assets/logo.png" class="logo" alt="Logo" />
     <h1 class="mt-0">vue-mushroom-admin</h1>
     <h3>开发中，敬请期待</h3>
