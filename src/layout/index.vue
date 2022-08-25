@@ -16,10 +16,28 @@ const { menuMode } = storeToRefs(settingStore)
 
 const hasTagsView = getConfig('VITE_TAGS_VIEW') === '1'
 
+// 兼容移动端，当为移动端时，导航模式始终为 vertical 模式
+const menuModeResponsive = computed(() => {
+  if (device.value === 'desktop') {
+    return menuMode.value
+  } else {
+    return 'vertical'
+  }
+})
+
+// 菜单模式下导航的展开状态
+/* const isSidebarOpened = computed(() => {
+  if (menuMode.value === 'vertical') {
+    return sidebarOpened.value
+  } else {
+    return true
+  }
+}) */
+
 const classObj = computed(() => {
   return {
-    hideSidebar: !sidebarOpened.value,
-    openSidebar: sidebarOpened.value,
+    hideSidebar: menuModeResponsive.value === 'vertical' && !sidebarOpened.value,
+    openSidebar: menuModeResponsive.value === 'vertical' && sidebarOpened.value,
     mobile: device.value === 'mobile',
     withoutAnimation: withoutAnimation.value,
   }
@@ -29,15 +47,6 @@ const classObj = computed(() => {
 const handleClickOutside = () => {
   appStore.closeSideBar(false)
 }
-
-// 兼容移动端，当为移动端时，导航模式始终为 vertical 模式
-const menuModeResponsive = computed(() => {
-  if (appStore.device === 'desktop') {
-    return menuMode.value
-  } else {
-    return 'vertical'
-  }
-})
 
 // 是否存在多级路由
 const hasMultipleRoutes = ref(true)
@@ -53,9 +62,8 @@ const showSidebar = computed(() => {
 })
 
 // 兼容移动端
-
 const { body } = document
-const WIDTH = 992 // refer to Bootstrap's responsive design
+const WIDTH = 768 // refer to Bootstrap's responsive design
 const $route = useRoute()
 watch($route, () => {
   if (device.value === 'mobile' && sidebarOpened) {
@@ -100,6 +108,7 @@ onMounted(() => {
       v-if="menuModeResponsive !== 'horizontal'"
       v-show="showSidebar"
       class="sidebar-container"
+      :menu-mode-responsive="menuModeResponsive"
       @show="(val) => (hasMultipleRoutes = val)"
     />
 
@@ -109,7 +118,7 @@ onMounted(() => {
         'horizontal-bar': menuModeResponsive === 'horizontal' || !showSidebar,
       }"
     >
-      <Navbar />
+      <Navbar :menu-mode-responsive="menuModeResponsive" />
       <TagsView v-if="hasTagsView" />
     </div>
     <AppMain

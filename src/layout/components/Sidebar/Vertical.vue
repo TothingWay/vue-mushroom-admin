@@ -9,12 +9,19 @@ import { useAppStore } from '@/store/app'
 import { usePermissionStore } from '@/store/permission'
 import { routeType } from '@/store/types'
 
+const props = defineProps({
+  menuModeResponsive: {
+    type: String,
+    required: true,
+  },
+})
+
 const settingStore = useSettingStore()
 const appStore = useAppStore()
 const permissionStore = usePermissionStore()
 
 const { sidebarOpened, horizontalSplitMenuIndex } = storeToRefs(appStore)
-const { menuMode, showLogo } = storeToRefs(settingStore)
+const { showLogo } = storeToRefs(settingStore)
 const { routes } = storeToRefs(permissionStore)
 
 const activeMenu = computed(() => {
@@ -47,7 +54,7 @@ const verticalRoutes = computed(() => {
 
   // 控制是否显示左侧导航
   if (verticalRoutes.length) {
-    if (menuMode.value === 'horizontalSplit' && !sidebarOpened) {
+    if (props.menuModeResponsive === 'horizontalSplit' && !sidebarOpened) {
       appStore.toggleSideBar()
     }
 
@@ -56,7 +63,7 @@ const verticalRoutes = computed(() => {
     emit('show', false)
   }
 
-  return menuMode.value === 'horizontalSplit' ? verticalRoutes : permissionRoutes
+  return props.menuModeResponsive === 'horizontalSplit' ? verticalRoutes : permissionRoutes
 })
 
 const $route = useRoute()
@@ -81,8 +88,8 @@ watch(
 <template>
   <div :class="{ 'has-logo': showLogo }">
     <Logo
-      v-if="showLogo && menuMode === 'vertical'"
-      :menu-mode="menuMode"
+      v-if="showLogo && menuModeResponsive === 'vertical'"
+      :menu-mode-responsive="menuModeResponsive"
       :collapse="!sidebarOpened"
     />
     <el-scrollbar wrap-class="scrollbar-wrapper">

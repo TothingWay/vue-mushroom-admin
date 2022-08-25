@@ -7,11 +7,18 @@ import { useSettingStore } from '@/store/settings'
 import { useAppStore } from '@/store/app'
 import { usePermissionStore } from '@/store/permission'
 
+const props = defineProps({
+  menuModeResponsive: {
+    type: String,
+    required: true,
+  },
+})
+
 const settingStore = useSettingStore()
 const { setHorizontalSplitMenuIndex } = useAppStore()
 const permissionStore = usePermissionStore()
 
-const { menuMode, showLogo } = storeToRefs(settingStore)
+const { showLogo } = storeToRefs(settingStore)
 const { routes } = storeToRefs(permissionStore)
 
 const activeMenu = computed(() => {
@@ -32,7 +39,7 @@ const horizontalRoutes = computed(() => {
     }
   }
 
-  return menuMode.value === 'horizontalSplit' ? permissionRoutes : routes.value
+  return props.menuModeResponsive === 'horizontalSplit' ? permissionRoutes : routes.value
 })
 
 const handleMenuSelect = (index: string) => {
@@ -43,10 +50,10 @@ const handleMenuSelect = (index: string) => {
 <template>
   <div class="horizontal-menu-container">
     <logo
-      v-if="showLogo && menuMode !== 'vertical'"
+      v-if="showLogo && menuModeResponsive !== 'vertical'"
       class="horizontal-menu-logo"
       :collapse="false"
-      :menu-mode="menuMode"
+      :menu-mode-responsive="menuModeResponsive"
     />
     <el-menu
       class="horizontal-menu"
@@ -59,7 +66,7 @@ const handleMenuSelect = (index: string) => {
         v-for="route in horizontalRoutes"
         :key="route.path"
         :item="route"
-        :horizontal-split="menuMode === 'horizontalSplit'"
+        :horizontal-split="menuModeResponsive === 'horizontalSplit'"
         :base-path="route.path"
         :show-icon="false"
       />

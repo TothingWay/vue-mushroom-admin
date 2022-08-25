@@ -6,7 +6,7 @@
       </router-link>
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
         <img :src="logoIcon" class="sidebar-logo" />
-        <h1 class="sidebar-title" :class="{ vertical: menuMode === 'vertical' }">
+        <h1 class="sidebar-title" :class="{ vertical: menuModeResponsive === 'vertical' }">
           {{ title }}
         </h1>
       </router-link>
@@ -23,7 +23,7 @@ defineProps({
     type: Boolean,
     required: true,
   },
-  menuMode: {
+  menuModeResponsive: {
     type: String,
     required: true,
   },
@@ -61,7 +61,7 @@ const title = getConfig('VITE_TITLE')
       font-size: 16px;
       vertical-align: middle;
       margin-left: 8px;
-      color: var(--el-color-black);
+      color: initial;
       &.vertical {
         color: var(--el-color-white);
       }

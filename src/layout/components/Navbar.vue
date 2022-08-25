@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import HorizontalBar from './Sidebar/Horizontal.vue'
 import Settings from './Settings.vue'
-import { useSettingStore } from '@/store/settings'
 import { useAppStore } from '@/store/app'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/store/user'
@@ -9,11 +8,16 @@ import { ElMessageBox } from 'element-plus'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
-const settingStore = useSettingStore()
-const { menuMode } = storeToRefs(settingStore)
 const { sidebarOpened } = storeToRefs(appStore)
 const { name } = storeToRefs(userStore)
 const { toggleSideBar } = appStore
+
+defineProps({
+  menuModeResponsive: {
+    type: String,
+    required: true,
+  },
+})
 
 const { t } = useI18n()
 const router = useRouter()
@@ -41,14 +45,18 @@ const settingsVisible = ref(false)
   <div class="navbar">
     <div class="left-menu">
       <hamburger
-        v-if="menuMode === 'vertical'"
+        v-if="menuModeResponsive === 'vertical'"
         id="hamburger-container"
         :is-active="sidebarOpened"
         class="hamburger-container"
         @toggle-click="toggleSideBar"
       />
 
-      <HorizontalBar v-if="menuMode !== 'vertical'" class="horizontal-menu-container" />
+      <HorizontalBar
+        v-if="menuModeResponsive !== 'vertical'"
+        :menu-mode-responsive="menuModeResponsive"
+        class="horizontal-menu-container"
+      />
     </div>
 
     <div class="right-menu">
