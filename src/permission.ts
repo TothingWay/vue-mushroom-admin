@@ -19,6 +19,7 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start()
 
   // 设置页面标题
+  // @ts-ignore
   document.title = getPageTitle(i18n.global.t(to.meta.title as string))
 
   // 判断用户是否已登录
