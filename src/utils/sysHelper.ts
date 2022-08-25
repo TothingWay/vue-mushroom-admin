@@ -45,3 +45,12 @@ export function getLanguage() {
 
   return currentLang.value
 }
+
+const title = getConfig('VITE_TITLE') || 'Mushroom Admin'
+
+export default function getPageTitle(pageTitle: string) {
+  if (pageTitle) {
+    return `${pageTitle} | ${title}`
+  }
+  return `${title}`
+}

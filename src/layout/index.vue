@@ -29,13 +29,22 @@ const handleClickOutside = () => {
   appStore.closeSideBar()
 }
 
+// 兼容移动端，当为移动端时，导航模式始终为 vertical 模式
+const menuModeResponsive = computed(() => {
+  if (appStore.device === 'desktop') {
+    return menuMode.value
+  } else {
+    return 'vertical'
+  }
+})
+
 // 是否存在多级路由
 const hasMultipleRoutes = ref(true)
 // 水平与垂直导航结合情况下，无二级菜单则隐藏
 const showSidebar = computed(() => {
-  if (menuMode.value === 'horizontalSplit') {
+  if (menuModeResponsive.value === 'horizontalSplit') {
     return hasMultipleRoutes.value
-  } else if (menuMode.value === 'horizontal') {
+  } else if (menuModeResponsive.value === 'horizontal') {
     return false
   } else {
     return true
@@ -51,7 +60,7 @@ const showSidebar = computed(() => {
       @click="handleClickOutside"
     />
     <VerticalBar
-      v-if="menuMode !== 'horizontal'"
+      v-if="menuModeResponsive !== 'horizontal'"
       v-show="showSidebar"
       class="sidebar-container"
       @show="(val) => (hasMultipleRoutes = val)"
@@ -60,7 +69,7 @@ const showSidebar = computed(() => {
     <div
       class="app-header container-left"
       :class="{
-        'horizontal-bar': menuMode === 'horizontal' || !showSidebar,
+        'horizontal-bar': menuModeResponsive === 'horizontal' || !showSidebar,
       }"
     >
       <Navbar />
@@ -68,7 +77,7 @@ const showSidebar = computed(() => {
     </div>
     <AppMain
       :class="{
-        'horizontal-bar': menuMode === 'horizontal' || !showSidebar,
+        'horizontal-bar': menuModeResponsive === 'horizontal' || !showSidebar,
       }"
     />
   </div>

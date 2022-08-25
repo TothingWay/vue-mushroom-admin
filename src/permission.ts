@@ -5,6 +5,8 @@ import { ElMessage } from 'element-plus'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
+import getPageTitle from './utils/sysHelper'
+import { i18n } from '@/lang'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -15,6 +17,9 @@ router.beforeEach(async (to, from, next) => {
   const permissionStore = usePermissionStore()
   // 开启进度条
   NProgress.start()
+
+  // 设置页面标题
+  document.title = getPageTitle(i18n.global.t(to.meta.title as string))
 
   // 判断用户是否已登录
   const hasToken = getToken()

@@ -80,7 +80,11 @@ watch(
 
 <template>
   <div :class="{ 'has-logo': showLogo }">
-    <Logo v-if="showLogo && menuMode === 'vertical'" :collapse="!sidebarOpened" />
+    <Logo
+      v-if="showLogo && menuMode === 'vertical'"
+      :menu-mode="menuMode"
+      :collapse="!sidebarOpened"
+    />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"

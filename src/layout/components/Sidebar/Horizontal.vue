@@ -46,6 +46,7 @@ const handleMenuSelect = (index: string) => {
       v-if="showLogo && menuMode !== 'vertical'"
       class="horizontal-menu-logo"
       :collapse="false"
+      :menu-mode="menuMode"
     />
     <el-menu
       class="horizontal-menu"
