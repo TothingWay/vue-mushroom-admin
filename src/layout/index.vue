@@ -10,7 +10,7 @@ import { storeToRefs } from 'pinia'
 import { useSettingStore } from '@/store/settings'
 
 const appStore = useAppStore()
-const { sidebarOpened, device } = storeToRefs(appStore)
+const { sidebarOpened, device, withoutAnimation } = storeToRefs(appStore)
 const settingStore = useSettingStore()
 const { menuMode } = storeToRefs(settingStore)
 
@@ -21,12 +21,13 @@ const classObj = computed(() => {
     hideSidebar: !sidebarOpened.value,
     openSidebar: sidebarOpened.value,
     mobile: device.value === 'mobile',
+    withoutAnimation: withoutAnimation.value,
   }
 })
 
 // 点击遮罩层，关闭菜单栏
 const handleClickOutside = () => {
-  appStore.closeSideBar()
+  appStore.closeSideBar(false)
 }
 
 // 兼容移动端，当为移动端时，导航模式始终为 vertical 模式
@@ -50,6 +51,42 @@ const showSidebar = computed(() => {
     return true
   }
 })
+
+// 兼容移动端
+
+const { body } = document
+const WIDTH = 992 // refer to Bootstrap's responsive design
+const $route = useRoute()
+watch($route, () => {
+  if (device.value === 'mobile' && sidebarOpened) {
+    appStore.closeSideBar(false)
+  }
+})
+const isMobile = () => {
+  const rect = body.getBoundingClientRect()
+  return rect.width - 1 < WIDTH
+}
+const resizeHandler = () => {
+  if (!document.hidden) {
+    appStore.toggleDevice(isMobile() ? 'mobile' : 'desktop')
+
+    if (isMobile()) {
+      appStore.closeSideBar(true)
+    }
+  }
+}
+onBeforeMount(() => {
+  window.addEventListener('resize', resizeHandler)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', resizeHandler)
+})
+onMounted(() => {
+  if (isMobile()) {
+    appStore.toggleDevice('mobile')
+    appStore.closeSideBar(true)
+  }
+})
 </script>
 
 <template>
@@ -67,7 +104,7 @@ const showSidebar = computed(() => {
     />
 
     <div
-      class="app-header container-left"
+      class="app-header container-left transition-none!"
       :class="{
         'horizontal-bar': menuModeResponsive === 'horizontal' || !showSidebar,
       }"

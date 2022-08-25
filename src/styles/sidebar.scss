@@ -178,7 +178,6 @@
     }
 
     .container-left {
-      transition: none;
       margin-left: 54px;
     }
   }
@@ -202,8 +201,15 @@
       .sidebar-container {
         pointer-events: none;
         transition-duration: 0.3s;
-        transform: translate3d(-var(--sidebar-width), 0, 0);
+        transform: translate3d(calc(0px - var(--sidebar-width)), 0, 0);
       }
+    }
+  }
+
+  .withoutAnimation {
+    .container-left,
+    .sidebar-container {
+      transition: none;
     }
   }
 }

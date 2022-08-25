@@ -7,6 +7,7 @@ export const useAppStore = defineStore('app', {
   state: () => ({
     sidebarOpened: sidebarOpened.value,
     device: 'desktop',
+    withoutAnimation: false,
     // 顶部水平与侧边栏结合导航下 选中时候的index
     horizontalSplitMenuIndex: '',
   }),
@@ -14,10 +15,12 @@ export const useAppStore = defineStore('app', {
     toggleSideBar() {
       this.sidebarOpened = !this.sidebarOpened
       sidebarOpened.value = this.sidebarOpened
+      this.withoutAnimation = false
     },
-    closeSideBar() {
+    closeSideBar(withoutAnimation: boolean) {
       this.sidebarOpened = false
       sidebarOpened.value = false
+      this.withoutAnimation = withoutAnimation
     },
     toggleDevice(device: string) {
       this.device = device
