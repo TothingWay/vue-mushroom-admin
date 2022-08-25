@@ -50,7 +50,7 @@ const handleMenuSelect = (index: string) => {
 <template>
   <div class="horizontal-menu-container">
     <logo
-      v-if="showLogo && menuModeResponsive !== 'vertical'"
+      v-if="showLogo === '1' && menuModeResponsive !== 'vertical'"
       class="horizontal-menu-logo"
       :collapse="false"
       :menu-mode-responsive="menuModeResponsive"

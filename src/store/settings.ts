@@ -18,5 +18,9 @@ export const useSettingStore = defineStore('setting', {
       config.value.VITE_MENU_MODE = mode
       this.menuMode = mode
     },
+    toggleLogo(show: '1' | '0') {
+      config.value.VITE_SHOW_LOGO = show
+      this.showLogo = show
+    },
   },
 })

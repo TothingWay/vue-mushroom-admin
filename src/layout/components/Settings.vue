@@ -40,17 +40,14 @@
       </el-radio>
     </el-radio-group>
 
-    <!-- <div class="setting-items">
-      <div class="setting-item-name">{{ $t('layout.tagsViewStyle') }}</div>
-      <el-select v-model="tagsViewStyle" style="width: 80px" @change="toggleTagsViewStyle">
-        <el-option
-          v-for="item in tagsViewStyleOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-    </div> -->
+    <el-divider>
+      {{ $t('layout.interfaceDisplay') }}
+    </el-divider>
+
+    <div class="setting-items">
+      <div class="setting-item-name">{{ $t('layout.showLogo') }}</div>
+      <el-switch v-model="showLogo" active-value="1" inactive-value="0" @change="toggleLogo" />
+    </div>
 
     <!-- <div class="setting-items">
       <div class="setting-item-name">{{ $t('layout.i18n') }}</div>
@@ -98,7 +95,7 @@ const beforeClose = (done: () => void) => {
 // 暗黑模式切换
 const settingStore = useSettingStore()
 const appStore = useAppStore()
-const { isDark, menuMode } = storeToRefs(settingStore)
+const { isDark, menuMode, showLogo } = storeToRefs(settingStore)
 
 const theme = computed({
   get() {
@@ -115,6 +112,11 @@ const toggleMenuMode = (mode: any) => {
   if (mode === 'horizontalSplit' && !appStore.sidebarOpened) {
     appStore.toggleSideBar()
   }
+}
+
+// logo切换
+const toggleLogo = (show: any) => {
+  settingStore.toggleLogo(show)
 }
 
 // // 标签风格切换

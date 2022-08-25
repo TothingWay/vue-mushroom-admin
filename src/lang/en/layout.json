@@ -4,5 +4,7 @@
   "menuMode": "Menu Mode",
   "menuModeVertical": "Vertical",
   "menuModeHorizontal": "Horizontal",
-  "menuModeHorizontalSplit": "Mix"
+  "menuModeHorizontalSplit": "Mix",
+  "interfaceDisplay": "Interface Display",
+  "showLogo": "Menu Logo"
 }

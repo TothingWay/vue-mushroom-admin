@@ -86,9 +86,9 @@ watch(
 </script>
 
 <template>
-  <div :class="{ 'has-logo': showLogo }">
+  <div :class="{ 'has-logo': showLogo === '1' }">
     <Logo
-      v-if="showLogo && menuModeResponsive === 'vertical'"
+      v-if="showLogo === '1' && menuModeResponsive === 'vertical'"
       :menu-mode-responsive="menuModeResponsive"
       :collapse="!sidebarOpened"
     />
