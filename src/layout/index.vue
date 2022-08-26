@@ -5,16 +5,13 @@ import VerticalBar from './components/Sidebar/Vertical.vue'
 import TagsView from './components/TagsView/index.vue'
 
 import { useAppStore } from '@/store/app'
-import { getConfig } from '@/utils/sysHelper'
 import { storeToRefs } from 'pinia'
 import { useSettingStore } from '@/store/settings'
 
 const appStore = useAppStore()
 const { sidebarOpened, device, withoutAnimation } = storeToRefs(appStore)
 const settingStore = useSettingStore()
-const { menuMode } = storeToRefs(settingStore)
-
-const hasTagsView = getConfig('VITE_TAGS_VIEW') === '1'
+const { menuMode, hasTagsView } = storeToRefs(settingStore)
 
 // 兼容移动端，当为移动端时，导航模式始终为 vertical 模式
 const menuModeResponsive = computed(() => {
@@ -119,9 +116,10 @@ onMounted(() => {
       }"
     >
       <Navbar :menu-mode-responsive="menuModeResponsive" />
-      <TagsView v-if="hasTagsView" />
+      <TagsView v-if="hasTagsView === '1'" />
     </div>
     <AppMain
+      :has-tags-view="hasTagsView"
       :class="{
         'horizontal-bar': menuModeResponsive === 'horizontal' || !showSidebar,
       }"

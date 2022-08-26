@@ -13,6 +13,7 @@
     "closeOthers": "Close Other Tabs",
     "closeAll": "Close All Tabs"
   },
+  "hasTagsView": "enable Tags View",
   "tagsViewStyle": "Tags View Style",
   "tagsViewStyleMode": {
     "bread": "bread",

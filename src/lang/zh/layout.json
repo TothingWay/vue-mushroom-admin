@@ -13,6 +13,7 @@
     "closeOthers": "关闭其它标签页",
     "closeAll": "关闭所有标签页"
   },
+  "hasTagsView": "开启标签页",
   "tagsViewStyle": "标签风格",
   "tagsViewStyleMode": {
     "bread": "面包式",

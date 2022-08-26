@@ -50,6 +50,16 @@
     </div>
 
     <div class="setting-items">
+      <div class="setting-item-name">{{ $t('layout.hasTagsView') }}</div>
+      <el-switch
+        v-model="hasTagsView"
+        active-value="1"
+        inactive-value="0"
+        @change="toggleTagsView"
+      />
+    </div>
+
+    <div class="setting-items">
       <div class="setting-item-name">{{ $t('layout.tagsViewStyle') }}</div>
       <el-select v-model="tagsViewStyle" style="width: 80px" @change="changeTagsViewStyle">
         <el-option
@@ -86,7 +96,7 @@ const beforeClose = (done: () => void) => {
 
 const settingStore = useSettingStore()
 const appStore = useAppStore()
-const { isDark, menuMode, showLogo, tagsViewStyle } = storeToRefs(settingStore)
+const { isDark, menuMode, showLogo, hasTagsView, tagsViewStyle } = storeToRefs(settingStore)
 
 // 暗黑模式切换
 const theme = computed({
@@ -106,9 +116,14 @@ const toggleMenuMode = (mode: any) => {
   }
 }
 
-// logo切换
-const toggleLogo = (show: any) => {
+// Logo 切换
+const toggleLogo = (show: '1' | '0') => {
   settingStore.toggleLogo(show)
+}
+
+// TagsView 切换
+const toggleTagsView = (show: '1' | '0') => {
+  settingStore.toggleTagsView(show)
 }
 
 const { t } = useI18n()
