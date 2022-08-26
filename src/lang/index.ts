@@ -50,3 +50,21 @@ export const i18n = createI18n({
   fallbackLocale: 'zh', // set fallback locale
   messages, // set locale messages
 })
+
+// 根据key获取国际化对应value，函数名为 “$t” 是为了配合i18n Ally插件来进行vscode国际化智能提示
+export function $t(key: string | undefined) {
+  if (!key) {
+    return ''
+  }
+
+  // @ts-ignore
+  const hasKey = i18n.global.te(key)
+
+  if (hasKey) {
+    // @ts-ignore
+    const translatedTitle = i18n.global.t(key)
+
+    return translatedTitle
+  }
+  return key
+}
