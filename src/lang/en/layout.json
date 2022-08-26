@@ -12,5 +12,11 @@
     "close": "Close Tabs",
     "closeOthers": "Close Other Tabs",
     "closeAll": "Close All Tabs"
+  },
+  "tagsViewStyle": "Tags View Style",
+  "tagsViewStyleMode": {
+    "bread": "bread",
+    "border": "border",
+    "card": "card"
   }
 }

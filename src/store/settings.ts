@@ -8,6 +8,7 @@ export const useSettingStore = defineStore('setting', {
     isDark: isDark.value,
     menuMode: getConfig('VITE_MENU_MODE'),
     showLogo: getConfig('VITE_SHOW_LOGO'),
+    tagsViewStyle: getConfig('VITE_TAGS_VIEW_STYLE'),
   }),
   actions: {
     toggleTheme(val: boolean) {
@@ -17,6 +18,10 @@ export const useSettingStore = defineStore('setting', {
     changeMenuMode(mode: 'vertical' | 'horizontal' | 'horizontalSplit') {
       config.value.VITE_MENU_MODE = mode
       this.menuMode = mode
+    },
+    changeTagsViewStyle(mode: 'bread' | 'border' | 'card') {
+      config.value.VITE_TAGS_VIEW_STYLE = mode
+      this.tagsViewStyle = mode
     },
     toggleLogo(show: '1' | '0') {
       config.value.VITE_SHOW_LOGO = show

@@ -5,9 +5,11 @@ import { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 
 import { usePermissionStore } from '@/store/permission'
 import { useTagsViewStore } from '@/store/tagsView'
+import { useSettingStore } from '@/store/settings'
 
 const permissionStore = usePermissionStore()
 const tagsViewStore = useTagsViewStore()
+const settingStore = useSettingStore()
 
 const visible = ref(false)
 const top = ref(0)
@@ -24,7 +26,7 @@ const routes = computed(() => {
   return permissionStore.routes
 })
 const tagsViewStyle = computed(() => {
-  return 'bread'
+  return settingStore.tagsViewStyle
 })
 
 // 路由对象

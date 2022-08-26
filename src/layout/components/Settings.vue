@@ -49,25 +49,17 @@
       <el-switch v-model="showLogo" active-value="1" inactive-value="0" @change="toggleLogo" />
     </div>
 
-    <!-- <div class="setting-items">
-      <div class="setting-item-name">{{ $t('layout.i18n') }}</div>
-      <el-switch v-model="showI18n" @change="toggleI18nDisplay" />
-    </div>
-
     <div class="setting-items">
-      <div class="setting-item-name">{{ $t('layout.notice') }}</div>
-      <el-switch v-model="showNotice" @change="toggleNoticeDisplay" />
+      <div class="setting-item-name">{{ $t('layout.tagsViewStyle') }}</div>
+      <el-select v-model="tagsViewStyle" style="width: 80px" @change="changeTagsViewStyle">
+        <el-option
+          v-for="item in tagsViewStyleOptions"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
     </div>
-
-    <div class="setting-items">
-      <div class="setting-item-name">{{ $t('layout.attention') }}</div>
-      <el-switch v-model="showAttention" @change="toggleAttentionDisplay" />
-    </div>
-
-    <div class="setting-items">
-      <div class="setting-item-name">{{ $t('layout.screenfull') }}</div>
-      <el-switch v-model="showScreenfull" @change="toggleScreenfullDisplay" />
-    </div> -->
   </el-drawer>
 </template>
 
@@ -92,11 +84,11 @@ const beforeClose = (done: () => void) => {
   done()
 }
 
-// 暗黑模式切换
 const settingStore = useSettingStore()
 const appStore = useAppStore()
-const { isDark, menuMode, showLogo } = storeToRefs(settingStore)
+const { isDark, menuMode, showLogo, tagsViewStyle } = storeToRefs(settingStore)
 
+// 暗黑模式切换
 const theme = computed({
   get() {
     return isDark.value
@@ -119,49 +111,26 @@ const toggleLogo = (show: any) => {
   settingStore.toggleLogo(show)
 }
 
+const { t } = useI18n()
+
 // // 标签风格切换
-// const tagsViewStyle = ref(store.getters.tagsViewStyle)
-// const tagsViewStyleOptions = reactive([
-//   {
-//     label: $t('navbar.tagsViewStyleMode.bread'),
-//     value: 'bread',
-//   },
-//   {
-//     label: $t('navbar.tagsViewStyleMode.border'),
-//     value: 'border',
-//   },
-//   {
-//     label: $t('navbar.tagsViewStyleMode.card'),
-//     value: 'card',
-//   },
-// ])
-// const toggleTagsViewStyle = (style) => {
-//   store.dispatch('settings/changeSetting', { key: 'tagsViewStyle', value: style })
-// }
-
-// // 是否显示国际化切换按钮
-// const showI18n = ref(store.getters.showI18n)
-// const toggleI18nDisplay = (value) => {
-//   store.dispatch('settings/changeSetting', { key: 'showI18n', value })
-// }
-
-// // 是否显示全屏切换按钮
-// const showScreenfull = ref(store.getters.showScreenfull)
-// const toggleScreenfullDisplay = (value) => {
-//   store.dispatch('settings/changeSetting', { key: 'showScreenfull', value })
-// }
-
-// // 是否显示关注按钮
-// const showAttention = ref(store.getters.showAttention)
-// const toggleAttentionDisplay = (value) => {
-//   store.dispatch('settings/changeSetting', { key: 'showAttention', value })
-// }
-
-// // 是否显示通知按钮
-// const showNotice = ref(store.getters.showNotice)
-// const toggleNoticeDisplay = (value) => {
-//   store.dispatch('settings/changeSetting', { key: 'showNotice', value })
-// }
+const tagsViewStyleOptions = reactive([
+  {
+    label: t('layout.tagsViewStyleMode.bread'),
+    value: 'bread',
+  },
+  {
+    label: t('layout.tagsViewStyleMode.border'),
+    value: 'border',
+  },
+  {
+    label: t('layout.tagsViewStyleMode.card'),
+    value: 'card',
+  },
+])
+const changeTagsViewStyle = (style: 'bread' | 'border' | 'card') => {
+  settingStore.changeTagsViewStyle(style)
+}
 </script>
 
 <style lang="scss" scoped>
