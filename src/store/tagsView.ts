@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
-import { routeType } from './types'
+import { RouteLocationNormalizedLoaded } from 'vue-router'
 
 export const useTagsViewStore = defineStore('tagsView', {
   state: () => ({
-    visitedViews: [] as routeType[],
+    visitedViews: [] as RouteLocationNormalizedLoaded[],
     cachedViews: [] as string[],
   }),
   actions: {
-    addVisitedView(view: routeType) {
+    addVisitedView(view: RouteLocationNormalizedLoaded) {
       if (this.visitedViews.some((v) => v.path === view.path)) return
       this.visitedViews.push(
         Object.assign({}, view, {
@@ -15,18 +15,18 @@ export const useTagsViewStore = defineStore('tagsView', {
         })
       )
     },
-    addCachedView(view: routeType) {
-      if (this.cachedViews.includes(view.name)) return
+    addCachedView(view: RouteLocationNormalizedLoaded) {
+      if (this.cachedViews.includes(view.name as string)) return
       if (!view.meta?.noCache) {
-        this.cachedViews.push(view.name)
+        this.cachedViews.push(view.name as string)
       }
     },
-    addView(view: routeType) {
+    addView(view: RouteLocationNormalizedLoaded) {
       this.addVisitedView(view)
       this.addCachedView(view)
     },
 
-    delVisitedView(view: routeType) {
+    delVisitedView(view: RouteLocationNormalizedLoaded) {
       return new Promise((resolve) => {
         for (const [i, v] of this.visitedViews.entries()) {
           if (v.path === view.path) {
@@ -37,15 +37,15 @@ export const useTagsViewStore = defineStore('tagsView', {
         resolve([...this.visitedViews])
       })
     },
-    delCachedView(view: routeType) {
+    delCachedView(view: RouteLocationNormalizedLoaded) {
       return new Promise((resolve) => {
-        const index = this.cachedViews.indexOf(view.name)
+        const index = this.cachedViews.indexOf(view.name as string)
         index > -1 && this.cachedViews.splice(index, 1)
         resolve([...this.cachedViews])
       })
     },
-    delView(view: routeType) {
-      return new Promise((resolve) => {
+    delView(view: RouteLocationNormalizedLoaded) {
+      return new Promise<any>((resolve) => {
         Promise.all([this.delVisitedView(view), this.delCachedView(view)]).then(() => {
           resolve({
             visitedViews: [...this.visitedViews],
@@ -55,7 +55,7 @@ export const useTagsViewStore = defineStore('tagsView', {
       })
     },
 
-    delOthersVisitedViews(view: routeType) {
+    delOthersVisitedViews(view: RouteLocationNormalizedLoaded) {
       return new Promise((resolve) => {
         this.visitedViews = this.visitedViews.filter((v) => {
           return v.meta?.affix || v.path === view.path
@@ -63,9 +63,9 @@ export const useTagsViewStore = defineStore('tagsView', {
         resolve([...this.visitedViews])
       })
     },
-    delOthersCachedViews(view: routeType) {
+    delOthersCachedViews(view: RouteLocationNormalizedLoaded) {
       return new Promise((resolve) => {
-        const index = this.cachedViews.indexOf(view.name)
+        const index = this.cachedViews.indexOf(view.name as string)
         if (index > -1) {
           this.cachedViews = this.cachedViews.slice(index, index + 1)
         } else {
@@ -75,7 +75,7 @@ export const useTagsViewStore = defineStore('tagsView', {
         resolve([...this.cachedViews])
       })
     },
-    delOthersViews(view: routeType) {
+    delOthersViews(view: RouteLocationNormalizedLoaded) {
       return new Promise((resolve) => {
         Promise.all([this.delOthersVisitedViews(view), this.delOthersCachedViews(view)]).then(
           () => {
@@ -103,7 +103,7 @@ export const useTagsViewStore = defineStore('tagsView', {
       })
     },
     delAllViews() {
-      return new Promise((resolve) => {
+      return new Promise<any>((resolve) => {
         Promise.all([this.delAllVisitedViews(), this.delAllCachedViews()]).then(() => {
           resolve({
             visitedViews: [...this.visitedViews],
@@ -113,7 +113,7 @@ export const useTagsViewStore = defineStore('tagsView', {
       })
     },
 
-    updateVisitedView(view: routeType) {
+    updateVisitedView(view: RouteLocationNormalizedLoaded) {
       for (let v of this.visitedViews) {
         if (v.path === view.path) {
           v = Object.assign(v, view)

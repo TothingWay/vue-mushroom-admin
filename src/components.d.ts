@@ -8,6 +8,8 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Hamburger: typeof import('./components/Hamburger/index.vue')['default']
+    IEpCloseBold: typeof import('~icons/ep/close-bold')['default']
+    IEpRefreshRight: typeof import('~icons/ep/refresh-right')['default']
     IEpSetting: typeof import('~icons/ep/setting')['default']
     IEpSwitchButton: typeof import('~icons/ep/switch-button')['default']
     ISvgTranslation: typeof import('~icons/svg/translation')['default']

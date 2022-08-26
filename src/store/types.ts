@@ -9,6 +9,7 @@ export interface routeType {
   component: any
   componentPath?: string
   path: string
+  fullPath?: string
   redirect?: string
   query?: object
   meta?: routeMetaType

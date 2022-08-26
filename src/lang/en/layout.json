@@ -6,5 +6,11 @@
   "menuModeHorizontal": "Horizontal",
   "menuModeHorizontalSplit": "Mix",
   "interfaceDisplay": "Interface Display",
-  "showLogo": "Menu Logo"
+  "showLogo": "Menu Logo",
+  "tagsView": {
+    "refresh": "Refresh",
+    "close": "Close Tabs",
+    "closeOthers": "Close Other Tabs",
+    "closeAll": "Close All Tabs"
+  }
 }
