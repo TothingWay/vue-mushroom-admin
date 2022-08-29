@@ -117,12 +117,12 @@ const toggleMenuMode = (mode: any) => {
 }
 
 // Logo 切换
-const toggleLogo = (show: '1' | '0') => {
+const toggleLogo = (show: any) => {
   settingStore.toggleLogo(show)
 }
 
 // TagsView 切换
-const toggleTagsView = (show: '1' | '0') => {
+const toggleTagsView = (show: any) => {
   settingStore.toggleTagsView(show)
 }
 
