@@ -34,7 +34,7 @@ const $route = useRoute()
 const $router = useRouter()
 
 const isActive = (route: RouteLocationNormalizedLoaded) => {
-  return route.path === $route.path
+  return route.fullPath === $route.fullPath
 }
 const isAffix = (tag: RouteLocationNormalizedLoaded) => {
   return tag.meta && tag.meta.affix
@@ -76,7 +76,6 @@ const addTags = () => {
   if (name) {
     tagsViewStore.addView($route)
   }
-  return false
 }
 
 const tagRefs = ref<any>([])
@@ -97,10 +96,11 @@ const moveToCurrentTag = () => {
 }
 const refreshSelectedTag = (view: RouteLocationNormalizedLoaded) => {
   tagsViewStore.delCachedView(view).then(() => {
-    const { fullPath } = view
+    const { fullPath, query } = unref(view)
     nextTick(() => {
       $router.replace({
         path: '/redirect' + fullPath,
+        query,
       })
     })
   })
@@ -140,7 +140,9 @@ const closeOthersTags = () => {
 
 const closeAllTags = (view: RouteLocationNormalizedLoaded) => {
   tagsViewStore.delAllViews().then(({ visitedViews }) => {
-    if (affixTags.value.some((tag: RouteLocationNormalizedLoaded) => tag.path === view.path)) {
+    if (
+      affixTags.value.some((tag: RouteLocationNormalizedLoaded) => tag.fullPath === view.fullPath)
+    ) {
       return
     }
     toLastView(visitedViews, view)
@@ -214,7 +216,7 @@ defineExpose({
       <router-link
         v-for="tag in visitedViews"
         ref="tagRefs"
-        :key="tag.path"
+        :key="tag.fullPath"
         :class="{
           active: isActive(tag),
           'is-affix': isAffix(tag),

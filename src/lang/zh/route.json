@@ -1,3 +1,21 @@
 {
-  "dashboard": "首页"
+  "dashboard": "首页",
+  "keepAlive": {
+    "index": "页面缓存KeepAlive",
+    "params": {
+      "index": "Params缓存",
+      "detail": "Params缓存示例"
+    },
+    "query": {
+      "index": "Query缓存",
+      "detail": "Query缓存示例"
+    },
+    "nested": {
+      "index": "多级菜单缓存",
+      "menu1": "菜单1",
+      "menu2": "菜单2",
+      "menu2-1": "菜单2-1",
+      "menu2-2": "菜单2-2"
+    }
+  }
 }

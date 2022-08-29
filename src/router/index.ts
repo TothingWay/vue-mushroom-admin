@@ -8,12 +8,16 @@ import { routeType } from '@/store/types'
 export const constantRoutes = [
   {
     path: '/redirect',
-    name: 'redirect',
+    name: 'Redirect',
     component: Layout,
     hidden: true,
+    meta: {
+      title: 'Redirect',
+    },
     children: [
       {
         path: '/redirect/:path(.*)',
+
         component: () => import('@/views/redirect/index.vue'),
       },
     ],

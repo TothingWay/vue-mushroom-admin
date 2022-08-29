@@ -8,7 +8,8 @@ export const useTagsViewStore = defineStore('tagsView', {
   }),
   actions: {
     addVisitedView(view: RouteLocationNormalizedLoaded) {
-      if (this.visitedViews.some((v) => v.path === view.path)) return
+      if (this.visitedViews.some((v) => v.fullPath === view.fullPath)) return
+
       this.visitedViews.push(
         Object.assign({}, view, {
           title: view.meta?.title || 'no-name',
@@ -16,9 +17,9 @@ export const useTagsViewStore = defineStore('tagsView', {
       )
     },
     addCachedView(view: RouteLocationNormalizedLoaded) {
-      if (this.cachedViews.includes(view.name as string)) return
+      if (this.cachedViews.includes(view.fullPath)) return
       if (!view.meta?.noCache) {
-        this.cachedViews.push(view.name as string)
+        this.cachedViews.push(view.fullPath)
       }
     },
     addView(view: RouteLocationNormalizedLoaded) {
@@ -29,7 +30,7 @@ export const useTagsViewStore = defineStore('tagsView', {
     delVisitedView(view: RouteLocationNormalizedLoaded) {
       return new Promise((resolve) => {
         for (const [i, v] of this.visitedViews.entries()) {
-          if (v.path === view.path) {
+          if (v.fullPath === view.fullPath) {
             this.visitedViews.splice(i, 1)
             break
           }
@@ -39,7 +40,7 @@ export const useTagsViewStore = defineStore('tagsView', {
     },
     delCachedView(view: RouteLocationNormalizedLoaded) {
       return new Promise((resolve) => {
-        const index = this.cachedViews.indexOf(view.name as string)
+        const index = this.cachedViews.indexOf(view.fullPath)
         index > -1 && this.cachedViews.splice(index, 1)
         resolve([...this.cachedViews])
       })
@@ -58,14 +59,14 @@ export const useTagsViewStore = defineStore('tagsView', {
     delOthersVisitedViews(view: RouteLocationNormalizedLoaded) {
       return new Promise((resolve) => {
         this.visitedViews = this.visitedViews.filter((v) => {
-          return v.meta?.affix || v.path === view.path
+          return v.meta?.affix || v.fullPath === view.fullPath
         })
         resolve([...this.visitedViews])
       })
     },
     delOthersCachedViews(view: RouteLocationNormalizedLoaded) {
       return new Promise((resolve) => {
-        const index = this.cachedViews.indexOf(view.name as string)
+        const index = this.cachedViews.indexOf(view.fullPath)
         if (index > -1) {
           this.cachedViews = this.cachedViews.slice(index, index + 1)
         } else {
@@ -115,7 +116,7 @@ export const useTagsViewStore = defineStore('tagsView', {
 
     updateVisitedView(view: RouteLocationNormalizedLoaded) {
       for (let v of this.visitedViews) {
-        if (v.path === view.path) {
+        if (v.fullPath === view.fullPath) {
           v = Object.assign(v, view)
           break
         }

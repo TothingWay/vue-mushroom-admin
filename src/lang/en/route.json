@@ -1,3 +1,21 @@
 {
-  "dashboard": "dashboard"
+  "dashboard": "dashboard",
+  "keepAlive": {
+    "index": "Page KeepAlive",
+    "params": {
+      "index": "Params Cache",
+      "detail": "Params Cache Demo"
+    },
+    "query": {
+      "index": "Query Cache",
+      "detail": "Query Cache Demo"
+    },
+    "nested": {
+      "index": "Multilevel Menu Cache",
+      "menu1": "Menu1",
+      "menu2": "Menu2",
+      "menu2-1": "Menu2-1",
+      "menu2-2": "Menu2-2"
+    }
+  }
 }

@@ -1,6 +1,107 @@
 import { MockMethod } from 'vite-plugin-mock'
 
-const permissionRouter = {
+const keepAliveParamsRouter = {
+  path: '/keepAlive',
+  componentPath: 'layout/index',
+  redirect: '/keepAlive/params',
+  name: 'KeepAlive',
+  meta: {
+    title: 'route.keepAlive.index',
+    icon: 'tabs',
+    roles: ['admin', 'editor'],
+  },
+  children: [
+    {
+      path: 'params',
+      componentPath: 'keepAlive/params/index',
+      name: 'KeepAliveParams',
+      meta: {
+        title: 'route.keepAlive.params.index',
+        roles: ['admin', 'editor'],
+      },
+    },
+    {
+      path: 'params/:id',
+      componentPath: 'keepAlive/params/detail',
+      name: 'KeepAliveParamsDetail',
+      hidden: true,
+      meta: {
+        title: 'route.keepAlive.params.detail',
+        roles: ['admin', 'editor'],
+      },
+    },
+    {
+      path: 'query/index',
+      componentPath: 'keepAlive/query/index',
+      name: 'KeepAliveQuery',
+      meta: {
+        title: 'route.keepAlive.query.index',
+        roles: ['admin', 'editor'],
+      },
+    },
+    {
+      path: 'query',
+      componentPath: 'keepAlive/query/detail',
+      name: 'KeepAliveQueryDetail',
+      hidden: true,
+      meta: {
+        title: 'route.keepAlive.query.detail',
+        roles: ['admin', 'editor'],
+      },
+    },
+    {
+      path: 'nested',
+      componentPath: 'layout/index',
+      name: 'KeepAliveNested',
+      meta: {
+        title: 'route.keepAlive.nested.index',
+        roles: ['admin', 'editor'],
+      },
+      children: [
+        {
+          path: 'menu1',
+          componentPath: 'keepAlive/nested/menu1/index',
+          name: 'KeepAliveNestedMenu1',
+          meta: {
+            title: 'route.keepAlive.nested.menu1',
+            roles: ['admin', 'editor'],
+          },
+        },
+        {
+          path: 'menu2',
+          componentPath: 'layout/index',
+          name: 'KeepAliveNestedMenu2',
+          meta: {
+            title: 'route.keepAlive.nested.menu2',
+            roles: ['admin', 'editor'],
+          },
+          children: [
+            {
+              path: 'menu2-1',
+              componentPath: 'keepAlive/nested/menu2/menu2-1/index',
+              name: 'KeepAliveNestedMenu2-1',
+              meta: {
+                title: 'route.keepAlive.nested.menu2-1',
+                roles: ['admin', 'editor'],
+              },
+            },
+            {
+              path: 'menu2-2',
+              componentPath: 'keepAlive/nested/menu2/menu2-1/index',
+              name: 'KeepAliveNestedMenu2-2',
+              meta: {
+                title: 'route.keepAlive.nested.menu2-2',
+                roles: ['admin', 'editor'],
+              },
+            },
+          ],
+        },
+      ],
+    },
+  ],
+}
+
+/* const permissionRouter = {
   path: '/permission',
   componentPath: 'layout/index',
   redirect: '/permission/index',
@@ -38,9 +139,9 @@ const permissionRouter = {
       },
     },
   ],
-}
+} */
 
-const icon = {
+/* const icon = {
   path: '/icon',
   componentPath: 'layout/index',
   meta: {
@@ -55,7 +156,7 @@ const icon = {
       meta: { title: 'Icons', icon: 'icon', noCache: true },
     },
   ],
-}
+} */
 
 export default [
   {
@@ -65,12 +166,12 @@ export default [
       if (headers.token === 'admin-token') {
         return {
           code: 200,
-          data: [permissionRouter, icon],
+          data: [keepAliveParamsRouter],
         }
       } else {
         return {
           code: 200,
-          data: [icon],
+          data: [keepAliveParamsRouter],
         }
       }
     },
