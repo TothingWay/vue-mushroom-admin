@@ -10,6 +10,8 @@ export const useAppStore = defineStore('app', {
     withoutAnimation: false,
     // 顶部水平与侧边栏结合导航下 选中时候的index
     horizontalSplitMenuIndex: '',
+    // 是否全屏（隐藏 menu & navbar）
+    fullscreen: false,
   }),
   actions: {
     toggleSideBar() {
@@ -27,6 +29,9 @@ export const useAppStore = defineStore('app', {
     },
     setHorizontalSplitMenuIndex(index: string) {
       this.horizontalSplitMenuIndex = index
+    },
+    toggleFullscreen() {
+      this.fullscreen = !this.fullscreen
     },
   },
 })

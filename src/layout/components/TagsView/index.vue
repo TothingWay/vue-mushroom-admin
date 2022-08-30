@@ -3,10 +3,12 @@ import ScrollPane from './ScrollPane.vue'
 import path from 'path'
 import { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 
+import { useAppStore } from '@/store/app'
 import { usePermissionStore } from '@/store/permission'
 import { useTagsViewStore } from '@/store/tagsView'
 import { useSettingStore } from '@/store/settings'
 
+const appStore = useAppStore()
 const permissionStore = usePermissionStore()
 const tagsViewStore = useTagsViewStore()
 const settingStore = useSettingStore()
@@ -28,6 +30,13 @@ const routes = computed(() => {
 const tagsViewStyle = computed(() => {
   return settingStore.tagsViewStyle
 })
+const fullscreen = computed(() => {
+  return appStore.fullscreen
+})
+
+const handleFullscreen = () => {
+  return appStore.toggleFullscreen()
+}
 
 // 路由对象
 const $route = useRoute()
@@ -236,8 +245,15 @@ defineExpose({
       </router-link>
     </scroll-pane>
 
-    <div class="tags-view-refresh" @click="handleRefresh">
+    <div class="tags-view-btn right-40px" @click="handleRefresh">
       <i-ep-refresh-right :class="[refreshBtnClass]" />
+    </div>
+
+    <div class="tags-view-btn right-0" @click="handleFullscreen">
+      <svg-icon
+        :icon-class="fullscreen ? 'compressOutlined' : 'expandOutlined'"
+        style="width: 1.1em; height: 1.1em"
+      />
     </div>
 
     <ul v-show="visible" :style="{ left: left + 'px', top: top - 48 + 'px' }" class="contextmenu">
@@ -262,7 +278,7 @@ defineExpose({
   position: relative;
 
   .tags-view-wrapper {
-    width: calc(100% - 40px);
+    width: calc(100% - 80px);
     .tags-view-item {
       display: flex;
       position: relative;
@@ -359,9 +375,8 @@ defineExpose({
     }
   }
 
-  .tags-view-refresh {
+  .tags-view-btn {
     position: absolute;
-    right: 0;
     top: 0;
     width: 39px;
     height: 37px;

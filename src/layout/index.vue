@@ -9,7 +9,7 @@ import { storeToRefs } from 'pinia'
 import { useSettingStore } from '@/store/settings'
 
 const appStore = useAppStore()
-const { sidebarOpened, device, withoutAnimation } = storeToRefs(appStore)
+const { sidebarOpened, device, withoutAnimation, fullscreen } = storeToRefs(appStore)
 const settingStore = useSettingStore()
 const { menuMode, hasTagsView } = storeToRefs(settingStore)
 
@@ -37,6 +37,7 @@ const classObj = computed(() => {
     openSidebar: menuModeResponsive.value === 'vertical' && sidebarOpened.value,
     mobile: device.value === 'mobile',
     withoutAnimation: withoutAnimation.value,
+    fullscreen: fullscreen.value,
   }
 })
 
@@ -103,7 +104,7 @@ onMounted(() => {
     />
     <VerticalBar
       v-if="menuModeResponsive !== 'horizontal'"
-      v-show="showSidebar"
+      v-show="!fullscreen && showSidebar"
       class="sidebar-container"
       :menu-mode-responsive="menuModeResponsive"
       @show="(val) => (hasMultipleRoutes = val)"
@@ -115,7 +116,7 @@ onMounted(() => {
         'horizontal-bar': menuModeResponsive === 'horizontal' || !showSidebar,
       }"
     >
-      <Navbar :menu-mode-responsive="menuModeResponsive" />
+      <Navbar v-show="!fullscreen" :menu-mode-responsive="menuModeResponsive" />
       <TagsView v-if="hasTagsView === '1'" />
     </div>
     <AppMain
@@ -136,6 +137,16 @@ onMounted(() => {
   &.mobile.openSidebar {
     position: fixed;
     top: 0;
+  }
+
+  &.fullscreen {
+    .container-left {
+      margin-left: 0 !important;
+    }
+
+    :deep(.app-main) {
+      height: calc(100% - var(--tagsview-height));
+    }
   }
 }
 
