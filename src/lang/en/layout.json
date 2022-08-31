@@ -19,5 +19,10 @@
     "bread": "bread",
     "border": "border",
     "card": "card"
+  },
+  "errorPage": {
+    "backHome": "Back Home",
+    "urlRight": "Please check if the URL you entered is correct, please click the button below to return to the home page",
+    "webmasterBan": "The webmaster said that you cannot enter this page"
   }
 }

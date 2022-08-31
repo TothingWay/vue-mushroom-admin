@@ -19,5 +19,10 @@
     "bread": "面包式",
     "border": "边框式",
     "card": "卡片式"
+  },
+  "errorPage": {
+    "backHome": "返回首页",
+    "urlRight": "请检查您输入的网址是否正确，请点击以下按钮返回主页",
+    "webmasterBan": "网管说这个页面你不能进"
   }
 }

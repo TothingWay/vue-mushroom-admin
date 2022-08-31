@@ -69,15 +69,14 @@ export const usePermissionStore = defineStore('permission', {
   }),
   actions: {
     generateRoutes() {
+      const route404 = [{ path: '/:pathMatch(.*)', redirect: '/404', hidden: true }]
       return new Promise((resolve) => {
         getMenu().then((response) => {
-          const asyncRoutes = response.data
+          const asyncRoutes = response.data.concat(route404)
 
           const flatRoutes = getFlatRoutes(deepClone(asyncRoutes, ['component']))
 
           this.routes = constantRoutes.concat(asyncRoutes) as any
-
-          console.log(this.routes)
 
           this.flatRoutes = flatRoutes
           resolve(flatRoutes)

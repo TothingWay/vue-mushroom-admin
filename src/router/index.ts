@@ -40,6 +40,11 @@ export const constantRoutes = [
       },
     ],
   },
+  {
+    path: '/404',
+    component: () => import('@/views/errorPage/404.vue'),
+    hidden: true,
+  },
 ]
 
 // 白名单应该包含基本静态路由
