@@ -37,8 +37,6 @@ const wrap = (fullPath: string, component: VNode) => {
   } else {
     wrapper = {
       name: fullPath,
-      scrollTop: 0,
-      scrollLeft: 0,
       render() {
         return h('div', { class: 'app-main-wapper' }, component)
       },
