@@ -13,57 +13,57 @@
   <img src="https://img.shields.io/badge/license-MIT-green" alt="license">
 </p>
 
-简体中文 | [English](./README.EN.md)
+English | [简体中文](./README.md)
 
-## 介绍
+## Introduction
 
-[vue-mushroom-admin](https://github.com/TothingWay/vue-mushroom-admin) 是一个开箱即用的后台前端解决方案，它基于 Vue3+Vite3+TypeScript+Element-Plus 实现。使用了最新的前端技术栈，内置了 i18n 国际化解决方案，即时按需原子 CSS 引擎 [unocss](https://github.com/unocss/unocss) 等
+[vue-mushroom-admin](https://github.com/TothingWay/vue-mushroom-admin) is an out-of-the-box back-end front-end solution based on Vue3+Vite3+TypeScript+Element-Plus. The use of the latest front-end technology stack, built-in i18n internationalization solution，The instant on-demand Atomic CSS engine [unocss](https://github.com/unocss/unocss).
 
 
-## 开发
+## Getting started
 
 ```
-# 克隆项目
+# clone the project
 git clone https://github.com/TothingWay/vue-mushroom-admin.git
 
-# 进入项目目录
+# enter the project directory
 cd vue-mushroom-admin
 
-# 安装依赖
+# install dependency
 pnpm install
 
-# 启动服务
+# develop
 pnpm dev
 ```
 
 
-## 发布
+## Build
 
 ```
-# 构建生产环境
+# build for production environment
 pnpm build
 ```
 
 
-## 其他
+## Advanced
 
 ```
-# 预览发布环境效果
+# preview the release environment effect
 pnpm preview
 
-# 代码格式检查并自动修复
+# code format check and auto fix
 pnpm lint
 
-# 格式化svg
+# Formatting SVG
 pnpm svgo
 
-# git 提交规范
+# Git Commit Specification
 pnpm cz
 ```
 
-## 浏览器支持
+## Browsers support
 
-不支持 IE 浏览器，推荐使用 Chrome 浏览器
+Internet Explorer is not supported. Chrome is recommended
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
