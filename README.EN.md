@@ -2,7 +2,7 @@
   <img width="80" src="./src/assets/logo.png">
 </p>
 
-<p align="center" style="font-size: 24px; font-weight: 700">Mushroom Admin</p>
+<h2 align="center" style="margin-top: 0">Mushroom Admin</h2>
 
 <p align="center">
   <img src="https://img.shields.io/badge/vue-3.2%2B-brightgreen" alt="vue3.2+">
