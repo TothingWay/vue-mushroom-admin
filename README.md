@@ -20,6 +20,9 @@
 [vue-mushroom-admin](https://github.com/TothingWay/vue-mushroom-admin) 是一个开箱即用的后台前端解决方案，它基于 Vue3+Vite3+TypeScript+Element-Plus 实现。使用了最新的前端技术栈，内置了 i18n 国际化解决方案，即时按需原子 CSS 引擎 [unocss](https://github.com/unocss/unocss) 等
 
 
+* [Vue3后台管理系统标签页\<KeepAlive\>终极解决方案](https://juejin.cn/post/7138342643268288549)
+
+
 ## 开发
 
 ```

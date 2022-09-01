@@ -19,6 +19,8 @@ English | [简体中文](./README.md)
 
 [vue-mushroom-admin](https://github.com/TothingWay/vue-mushroom-admin) is an out-of-the-box back-end front-end solution based on Vue3+Vite3+TypeScript+Element-Plus. The use of the latest front-end technology stack, built-in i18n internationalization solution，The instant on-demand Atomic CSS engine [unocss](https://github.com/unocss/unocss).
 
+* [Vue3 Background management system TAB \<KeepAlive\> ultimate solution](https://juejin.cn/post/7138342643268288549)
+
 
 ## Getting started
 
