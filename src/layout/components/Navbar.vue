@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useFullscreen } from '@vueuse/core'
 import HorizontalBar from './Sidebar/Horizontal.vue'
 import Settings from './Settings.vue'
 import { useAppStore } from '@/store/app'
@@ -39,6 +40,9 @@ const logout = () => {
 
 // 系统设置抽屉
 const settingsVisible = ref(false)
+
+// 全屏
+const { isFullscreen, toggle } = useFullscreen()
 </script>
 
 <template>
@@ -60,6 +64,14 @@ const settingsVisible = ref(false)
     </div>
 
     <div class="right-menu">
+      <!-- 全屏 -->
+      <svg-icon
+        class="right-menu-item hover-effect"
+        :icon-class="isFullscreen ? 'exit-fullscreen' : 'fullscreen'"
+        @click="toggle"
+      />
+
+      <!-- 用户 -->
       <el-dropdown size="default" class="avatar-container right-menu-item hover-effect">
         <div class="avatar-wrapper flex-center">
           <el-avatar class="user-avatar">{{ name.substring(0, 1) }}</el-avatar>
@@ -76,6 +88,7 @@ const settingsVisible = ref(false)
         </template>
       </el-dropdown>
 
+      <!-- 系统设置 -->
       <i-ep-setting class="right-menu-item hover-effect h-20px" @click="settingsVisible = true" />
     </div>
 
