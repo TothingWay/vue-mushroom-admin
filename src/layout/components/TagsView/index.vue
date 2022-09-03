@@ -43,7 +43,7 @@ const $route = useRoute()
 const $router = useRouter()
 
 const isActive = (route: RouteLocationNormalizedLoaded) => {
-  return route.fullPath === $route.fullPath
+  return route.path === $route.path
 }
 const isAffix = (tag: RouteLocationNormalizedLoaded) => {
   return tag.meta && tag.meta.affix

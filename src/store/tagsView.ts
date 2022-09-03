@@ -8,7 +8,7 @@ export const useTagsViewStore = defineStore('tagsView', {
   }),
   actions: {
     addVisitedView(view: RouteLocationNormalizedLoaded) {
-      if (this.visitedViews.some((v) => v.fullPath === view.fullPath)) return
+      if (this.visitedViews.some((v) => v.path === view.path)) return
 
       this.visitedViews.push(
         Object.assign({}, view, {
@@ -30,7 +30,7 @@ export const useTagsViewStore = defineStore('tagsView', {
     delVisitedView(view: RouteLocationNormalizedLoaded) {
       return new Promise((resolve) => {
         for (const [i, v] of this.visitedViews.entries()) {
-          if (v.fullPath === view.fullPath) {
+          if (v.path === view.path) {
             this.visitedViews.splice(i, 1)
             break
           }
@@ -59,7 +59,7 @@ export const useTagsViewStore = defineStore('tagsView', {
     delOthersVisitedViews(view: RouteLocationNormalizedLoaded) {
       return new Promise((resolve) => {
         this.visitedViews = this.visitedViews.filter((v) => {
-          return v.meta?.affix || v.fullPath === view.fullPath
+          return v.meta?.affix || v.path === view.path
         })
         resolve([...this.visitedViews])
       })
@@ -116,7 +116,7 @@ export const useTagsViewStore = defineStore('tagsView', {
 
     updateVisitedView(view: RouteLocationNormalizedLoaded) {
       for (let v of this.visitedViews) {
-        if (v.fullPath === view.fullPath) {
+        if (v.path === view.path) {
           v = Object.assign(v, view)
           break
         }
