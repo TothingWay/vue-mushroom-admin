@@ -31,25 +31,6 @@ const keepAliveParamsRouter = {
       },
     },
     {
-      path: 'query/index',
-      componentPath: 'keepAlive/query/index',
-      name: 'KeepAliveQuery',
-      meta: {
-        title: 'route.keepAlive.query.index',
-        roles: ['admin', 'editor'],
-      },
-    },
-    {
-      path: 'query',
-      componentPath: 'keepAlive/query/detail',
-      name: 'KeepAliveQueryDetail',
-      hidden: true,
-      meta: {
-        title: 'route.keepAlive.query.detail',
-        roles: ['admin', 'editor'],
-      },
-    },
-    {
       path: 'nested',
       componentPath: 'layout/index',
       name: 'KeepAliveNested',
