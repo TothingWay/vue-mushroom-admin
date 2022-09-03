@@ -86,7 +86,7 @@ export default defineComponent({
   },
   computed: {
     onlyOneChildTmp() {
-      return this.onlyOneChild as any
+      return (this as any).onlyOneChild
     },
   },
   methods: {
@@ -96,7 +96,7 @@ export default defineComponent({
           return false
         } else {
           // Temp set(will be used if only has one showing child)
-          this.onlyOneChild = item
+          ;(this as any).onlyOneChild = item
           return true
         }
       })
@@ -108,7 +108,7 @@ export default defineComponent({
 
       // Show parent if there are no child router to display
       if (showingChildren.length === 0) {
-        this.onlyOneChild = { ...parent, path: '', noShowingChildren: true }
+        ;(this as any).onlyOneChild = { ...parent, path: '', noShowingChildren: true }
         return true
       }
 
