@@ -59,7 +59,6 @@ export const useUserStore = defineStore('user', {
 
     resetToken() {
       const tagsViewStore = useTagsViewStore()
-      // eslint-disable-next-line no-async-promise-executor
       return new Promise<void>((resolve) => {
         this.token = ''
         this.roles = []
