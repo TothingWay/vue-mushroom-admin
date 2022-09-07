@@ -5,7 +5,7 @@ import { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 
 import { useAppStore } from '@/store/app'
 import { usePermissionStore } from '@/store/permission'
-import { useTagsViewStore } from '@/store/tagsView'
+import { useTagsViewStore, visitedViewsStorage } from '@/store/tagsView'
 import { useSettingStore } from '@/store/settings'
 
 const appStore = useAppStore()
@@ -37,6 +37,11 @@ const fullscreen = computed(() => {
 const handleFullscreen = () => {
   return appStore.toggleFullscreen()
 }
+
+// 持久化标签页
+watch(visitedViews, (views: any) => {
+  visitedViewsStorage.value = views
+})
 
 // 路由对象
 const $route = useRoute()

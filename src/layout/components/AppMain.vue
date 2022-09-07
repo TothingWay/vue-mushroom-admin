@@ -23,7 +23,9 @@ defineProps({
 })
 
 const tagsViewStore = useTagsViewStore()
-const cachedViews = tagsViewStore.cachedViews
+const cachedViews = computed(() => {
+  return tagsViewStore.cachedViews
+})
 
 // 自定义name的壳的集合
 const cachedWrapperComponents = new Map()

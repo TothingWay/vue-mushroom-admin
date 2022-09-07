@@ -3,6 +3,7 @@ import { getToken, setToken, removeToken } from '@/utils/auth'
 import { login, getUserInfo } from '@/api/user'
 import { userInfoType } from './types'
 import { resetRouter } from '@/router'
+import { useTagsViewStore } from './tagsView'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
@@ -57,9 +58,12 @@ export const useUserStore = defineStore('user', {
     },
 
     resetToken() {
+      const tagsViewStore = useTagsViewStore()
+      // eslint-disable-next-line no-async-promise-executor
       return new Promise<void>((resolve) => {
         this.token = ''
         this.roles = []
+        tagsViewStore.delAllViews()
         removeToken()
         resetRouter()
         resolve()

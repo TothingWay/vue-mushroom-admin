@@ -1,10 +1,13 @@
+import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { RouteLocationNormalizedLoaded } from 'vue-router'
 
+export const visitedViewsStorage = useStorage('visitedViews', [])
+
 export const useTagsViewStore = defineStore('tagsView', {
   state: () => ({
-    visitedViews: [] as RouteLocationNormalizedLoaded[],
-    cachedViews: [] as string[],
+    visitedViews: visitedViewsStorage.value as RouteLocationNormalizedLoaded[],
+    cachedViews: visitedViewsStorage.value.map((view: any) => view.fullPath) as string[],
   }),
   actions: {
     addVisitedView(view: RouteLocationNormalizedLoaded) {
