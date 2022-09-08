@@ -69,7 +69,9 @@ export const usePermissionStore = defineStore('permission', {
   }),
   actions: {
     generateRoutes() {
-      const route404 = [{ path: '/:pathMatch(.*)', redirect: '/404', hidden: true }]
+      const route404 = [
+        { path: '/:pathMatch(.*)', name: 'PathMatchAll', redirect: '/404', hidden: true },
+      ]
       return new Promise((resolve) => {
         getMenu().then((response) => {
           const asyncRoutes = response.data.concat(route404)

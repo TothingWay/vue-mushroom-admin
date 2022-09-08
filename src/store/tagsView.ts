@@ -96,7 +96,7 @@ export const useTagsViewStore = defineStore('tagsView', {
       return new Promise((resolve) => {
         // keep affix tags
         const affixTags = this.visitedViews.filter((tag) => tag.meta?.affix)
-        this.visitedViews = affixTags
+        this.visitedViews = markRaw(affixTags)
         resolve([...this.visitedViews])
       })
     },

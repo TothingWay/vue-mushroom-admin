@@ -30,9 +30,7 @@ const logout = () => {
   })
     .then(() => {
       userStore.resetToken().then(() => {
-        nextTick(() => {
-          router.push(`/login?redirect=${route.fullPath}`)
-        })
+        router.push(`/login?redirect=${route.fullPath}`)
       })
     })
     .catch(() => {
