@@ -82,14 +82,14 @@ const keepAliveParamsRouter = {
   ],
 }
 
-/* const permissionRouter = {
+const permissionRouter = {
   path: '/permission',
   componentPath: 'layout/index',
-  redirect: '/permission/index',
+  redirect: '/permission/page',
   alwaysShow: true,
   meta: {
-    title: 'Permission',
-    icon: 'lock',
+    title: 'route.permission.index',
+    icon: 'permission',
     roles: ['admin', 'editor'],
   },
   children: [
@@ -98,7 +98,7 @@ const keepAliveParamsRouter = {
       componentPath: 'permission/page',
       name: 'PagePermission',
       meta: {
-        title: 'Page Permission',
+        title: 'route.permission.page',
         roles: ['admin'],
       },
     },
@@ -107,20 +107,12 @@ const keepAliveParamsRouter = {
       componentPath: 'permission/directive',
       name: 'DirectivePermission',
       meta: {
-        title: 'Directive Permission',
-      },
-    },
-    {
-      path: 'role',
-      componentPath: 'permission/role',
-      name: 'RolePermission',
-      meta: {
-        title: 'Role Permission',
+        title: 'route.permission.directive',
         roles: ['admin'],
       },
     },
   ],
-} */
+}
 
 /* const icon = {
   path: '/icon',
@@ -147,7 +139,7 @@ export default [
       if (headers.token === 'admin-token') {
         return {
           code: 200,
-          data: [keepAliveParamsRouter],
+          data: [keepAliveParamsRouter, permissionRouter],
         }
       } else {
         return {

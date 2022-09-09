@@ -4,8 +4,8 @@ const tokens = {
   admin: {
     token: 'admin-token',
   },
-  visitor: {
-    token: 'visitor-token',
+  editor: {
+    token: 'editor-token',
   },
 }
 
@@ -14,9 +14,9 @@ const users = {
     roles: ['admin'],
     name: 'Admin',
   },
-  'visitor-token': {
+  'editor-token': {
     roles: ['editor'],
-    name: 'visitor',
+    name: 'editor',
   },
 }
 

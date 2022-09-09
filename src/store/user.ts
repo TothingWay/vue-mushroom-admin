@@ -9,7 +9,7 @@ export const useUserStore = defineStore('user', {
   state: () => ({
     token: getToken(),
     name: '',
-    roles: [],
+    roles: [] as string[],
   }),
   actions: {
     // 登录

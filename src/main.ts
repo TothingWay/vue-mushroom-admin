@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, Directive } from 'vue'
 import App from './App.vue'
 import router from '@/router'
 import { createPinia } from 'pinia'
@@ -13,6 +13,7 @@ import '@/styles/index.scss'
 import useElementPlus from '@/plugins/elementPlus'
 import registerGlobComps from '@/plugins/registerGlobComps'
 import '@/permission'
+import * as directives from '@/directive'
 
 const app = createApp(App)
 
@@ -29,6 +30,10 @@ getSysConfig().then(() => {
   useElementPlus(app)
   // '@/components/globa/*/index.vue'下的组件会自动全局注册
   registerGlobComps(app)
+  // 全局注册自定义指令
+  Object.keys(directives).forEach((key) => {
+    app.directive(key, (directives as { [key: string]: Directive })[key])
+  })
 
   app.mount('#app')
 })
