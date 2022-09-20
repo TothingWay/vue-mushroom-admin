@@ -61,9 +61,9 @@ export default defineComponent({
       },
     },
     theme() {
-      this.$nextTick(() => {
+      setTimeout(() => {
         this.initChart()
-      })
+      }, 0)
     },
     height() {
       this.$nextTick(() => {
