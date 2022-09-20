@@ -18,5 +18,9 @@
     "index": "权限控制",
     "page": "页面权限",
     "directive": "指令权限"
+  },
+  "components": {
+    "index": "组件",
+    "echarts": "echarts图表"
   }
 }

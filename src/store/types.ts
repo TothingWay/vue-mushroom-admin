@@ -4,6 +4,7 @@ export interface routeMetaType {
   parent?: string
   noCache?: boolean
   affix?: boolean
+  componentPath?: string
 }
 export interface routeType {
   component: any

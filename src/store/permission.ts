@@ -7,7 +7,7 @@ import path from 'path'
 
 // Layout component
 import Layout from '@/layout/index.vue'
-import errorPage from '@/views/errorPage/404.vue'
+import ComponentNotFound from '@/components/ComponentNotFound/index.vue'
 
 const dynamicViewsModules = import.meta.glob('../../**/*.vue')
 const modulesRoutesKeys = Object.keys(dynamicViewsModules)
@@ -41,6 +41,7 @@ const formatRouter = (
     const meta = item.meta || {}
     if (!meta.parent && parent) {
       meta.parent = parent.path
+      meta.componentPath = item.componentPath
       item.meta = meta
     }
     if (item.redirect) item.redirect = path.resolve(basePath, item.redirect)
@@ -49,7 +50,7 @@ const formatRouter = (
       if (index !== -1) {
         item.component = dynamicViewsModules[modulesRoutesKeys[index]]
       } else {
-        item.component = errorPage
+        item.component = ComponentNotFound
       }
     }
     if (item.children && item.children.length > 0) {

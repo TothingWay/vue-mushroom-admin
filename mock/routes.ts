@@ -114,6 +114,29 @@ const permissionRouter = {
   ],
 }
 
+const componentsRouter = {
+  path: '/components',
+  componentPath: 'layout/index',
+  redirect: '/components/echarts',
+  alwaysShow: true,
+  meta: {
+    title: 'route.components.index',
+    icon: 'components',
+    roles: ['admin', 'editor'],
+  },
+  children: [
+    {
+      path: 'echarts',
+      componentPath: 'components/echarts',
+      name: 'echarts',
+      meta: {
+        title: 'route.components.echarts',
+        roles: ['admin', 'editor'],
+      },
+    },
+  ],
+}
+
 /* const icon = {
   path: '/icon',
   componentPath: 'layout/index',
@@ -139,7 +162,7 @@ export default [
       if (headers.token === 'admin-token') {
         return {
           code: 200,
-          data: [keepAliveParamsRouter, permissionRouter],
+          data: [keepAliveParamsRouter, permissionRouter, componentsRouter],
         }
       } else {
         return {

@@ -17,6 +17,10 @@
       "index": "Permission Control",
       "page": "Page Permission",
       "directive": "Directive Permission"
+    },
+    "components": {
+      "index": "components",
+      "echarts": "echarts"
     }
   }
 }

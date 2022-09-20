@@ -7,6 +7,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Chart: typeof import('./components/Chart/index.vue')['default']
+    ComponentNotFound: typeof import('./components/ComponentNotFound/index.vue')['default']
     Hamburger: typeof import('./components/Hamburger/index.vue')['default']
     IEpCloseBold: typeof import('~icons/ep/close-bold')['default']
     IEpPromotion: typeof import('~icons/ep/promotion')['default']
